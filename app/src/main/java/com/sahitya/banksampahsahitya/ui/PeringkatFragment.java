@@ -18,7 +18,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sahitya.banksampahsahitya.R;
-import com.sahitya.banksampahsahitya.adapter.RankingAdapter;
+import com.sahitya.banksampahsahitya.presentation.adapter.RankingAdapter;
 import com.sahitya.banksampahsahitya.model.ranking.RankingModel;
 import com.sahitya.banksampahsahitya.utils.RankingUtils;
 

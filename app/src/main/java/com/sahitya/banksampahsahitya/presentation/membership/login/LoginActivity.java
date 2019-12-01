@@ -2,6 +2,7 @@ package com.sahitya.banksampahsahitya.presentation.membership.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -30,6 +31,8 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     private final String TAG = LoginActivity.class.getSimpleName();
+    public static final String KEY_VERIFICATION_CODE = "keyverificationcode";
+    public static final String KEY_ID_VERIFICATION = "keyidverification";
 
     @BindView(R.id.edit_text_email_login_user)
     TextInputLayout editTextEmail;
@@ -44,6 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private Unbinder unbinder;
 
+    private ProgressDialog loading;
     private LoginService mLoginService;
 
     @Override
@@ -68,6 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String password = editTextPassword.getEditText().getText().toString().trim();
 
                 if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)){
+                    loading = ProgressDialog.show(this, null, "Harap Tunggu...", true, false);
                     sendLoginPost(email, password);
                 }
 
@@ -87,17 +92,24 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mLoginService.saveLoginPost(email, password).enqueue(new Callback<LoginModel>() {
             @Override
             public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
+                loading.dismiss();
+                String error = response.body().getError();
                 if (response.isSuccessful()){
                     Log.d(TAG, response.body().toString());
+                    Log.d(TAG, response.body().getKodeVerifikasi());
                     Log.d(TAG, "Sukses");
 
-                    startActivity(new Intent(getApplicationContext(), VerificationCodeActivity.class));
+                    Intent intent = new Intent(getApplicationContext(), VerificationCodeActivity.class);
+                    intent.putExtra(KEY_VERIFICATION_CODE, response.body().getKodeVerifikasi());
+                    intent.putExtra(KEY_ID_VERIFICATION, response.body().getId());
+                    startActivity(intent);
                 }else{
                     Log.d(TAG, "Gagal");
                 }
             }
             @Override
             public void onFailure(Call<LoginModel> call, Throwable t) {
+                loading.dismiss();
                 Log.d(TAG, "unable to submit post to API");
                 Log.d(TAG, t.getMessage());
             }

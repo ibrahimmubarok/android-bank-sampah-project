@@ -60,6 +60,7 @@
     <string name="kode_verifikasi">Kode Verifikasi</string>
     <string name="label_kode_verifikasi">Masukkan kode verifikasi yang sudah dikirim ke email anda</string>
     <string name="kirim">Kirim</string>
+    <string name="lupa_sandi">Lupa Kata Sandi?</string>
 
 
     <string-array name="fakultas">

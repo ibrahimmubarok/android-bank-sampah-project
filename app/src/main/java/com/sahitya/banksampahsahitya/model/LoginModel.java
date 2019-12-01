@@ -11,6 +11,9 @@ public class LoginModel implements Parcelable {
     @SerializedName("id")
     private int id;
 
+    @SerializedName("error")
+    private String error;
+
     @SerializedName("verified")
     private int verified;
 
@@ -47,6 +50,38 @@ public class LoginModel implements Parcelable {
             return new LoginModel[size];
         }
     };
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getVerified() {
+        return verified;
+    }
+
+    public void setVerified(int verified) {
+        this.verified = verified;
+    }
+
+    public String getKodeVerifikasi() {
+        return kodeVerifikasi;
+    }
+
+    public void setKodeVerifikasi(String kodeVerifikasi) {
+        this.kodeVerifikasi = kodeVerifikasi;
+    }
 
     public String getEmail() {
         return email;

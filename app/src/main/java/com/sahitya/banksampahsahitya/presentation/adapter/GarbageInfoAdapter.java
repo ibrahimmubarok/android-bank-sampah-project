@@ -1,4 +1,4 @@
-package com.sahitya.banksampahsahitya.adapter;
+package com.sahitya.banksampahsahitya.presentation.adapter;
 
 import android.content.Context;
 import android.view.View;
