@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -17,10 +18,17 @@ import com.sahitya.banksampahsahitya.ui.TabunganFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static int idUser;
+
+    public static String ID_PROFILE = "id_profile";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Bundle bundle = getIntent().getExtras();
+        idUser = bundle.getInt(ID_PROFILE);
 
         loadFragment(new TabunganFragment());
 

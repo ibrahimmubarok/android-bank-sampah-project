@@ -5,15 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.sahitya.banksampahsahitya.ForgotPasswordActivity;
-import com.sahitya.banksampahsahitya.MainActivity;
 import com.sahitya.banksampahsahitya.R;
 import com.sahitya.banksampahsahitya.RegisterActivity;
 import com.sahitya.banksampahsahitya.VerificationCodeActivity;
@@ -31,8 +34,6 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
 
     private final String TAG = LoginActivity.class.getSimpleName();
-    public static final String KEY_VERIFICATION_CODE = "keyverificationcode";
-    public static final String KEY_ID_VERIFICATION = "keyidverification";
 
     @BindView(R.id.edit_text_email_login_user)
     TextInputLayout editTextEmail;
@@ -44,6 +45,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextView tvSignUp;
     @BindView(R.id.tv_forgot_password_login_user)
     TextView tvForgotPassword;
+    @BindView(R.id.text_email)
+    TextInputEditText textInputEmail;
+    @BindView(R.id.text_password)
+    TextInputEditText textInputPassword;
 
     private Unbinder unbinder;
 
@@ -59,9 +64,65 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         mLoginService = LoginUtils.getLoginService();
 
+        textInputEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String input = textInputPassword.getText().toString().trim();
+
+                if (charSequence.toString().trim().length() != 0 && !input.isEmpty()){
+                    validasiField(true);
+                }else{
+                    validasiField(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        textInputPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                String input = textInputEmail.getText().toString().trim();
+
+                if (charSequence.toString().trim().length() != 0 && !input.isEmpty()){
+                    validasiField(true);
+                }else{
+                    validasiField(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         btnLogin.setOnClickListener(this);
         tvSignUp.setOnClickListener(this);
         tvForgotPassword.setOnClickListener(this);
+    }
+
+    boolean validasiField(boolean b){
+        if (b){
+            btnLogin.setEnabled(true);
+            btnLogin.setBackgroundResource(R.drawable.bg_rounded_green);
+        }else{
+            btnLogin.setEnabled(false);
+            btnLogin.setBackgroundResource(R.drawable.bg_rounded_green_false);
+        }
+        return b;
     }
 
     @Override
@@ -95,14 +156,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 loading.dismiss();
                 String error = response.body().getError();
                 if (response.isSuccessful()){
-                    Log.d(TAG, response.body().toString());
-                    Log.d(TAG, response.body().getKodeVerifikasi());
-                    Log.d(TAG, "Sukses");
+                    if (response.body().getVerified() != 0){
+                        Log.d(TAG, response.body().toString());
+                        Log.d(TAG, response.body().getKodeVerifikasi());
+                        Log.d(TAG, "Sukses");
+                    }
 
-                    Intent intent = new Intent(getApplicationContext(), VerificationCodeActivity.class);
-                    intent.putExtra(KEY_VERIFICATION_CODE, response.body().getKodeVerifikasi());
-                    intent.putExtra(KEY_ID_VERIFICATION, response.body().getId());
-                    startActivity(intent);
+                    if (response.body().getVerified() == 0){
+                        Toast.makeText(LoginActivity.this, "Email atau password salah", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Intent intent = new Intent(getApplicationContext(), VerificationCodeActivity.class);
+                        intent.putExtra(VerificationCodeActivity.KEY_VERIFICATION_CODE, response.body().getKodeVerifikasi());
+                        intent.putExtra(VerificationCodeActivity.KEY_ID_VERIFICATION, response.body().getId());
+                        startActivity(intent);
+                    }
                 }else{
                     Log.d(TAG, "Gagal");
                 }

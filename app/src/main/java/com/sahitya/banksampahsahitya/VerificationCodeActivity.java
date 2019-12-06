@@ -12,9 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.sahitya.banksampahsahitya.model.LoginModel;
 import com.sahitya.banksampahsahitya.model.VerifikasiModel;
-import com.sahitya.banksampahsahitya.presentation.membership.login.LoginActivity;
 import com.sahitya.banksampahsahitya.rest.service.VerificationService;
 import com.sahitya.banksampahsahitya.utils.VerificationUtils;
 
@@ -28,6 +26,8 @@ import retrofit2.Response;
 public class VerificationCodeActivity extends AppCompatActivity implements View.OnClickListener{
 
     private static final String TAG = VerificationCodeActivity.class.getSimpleName();
+    public static final String KEY_VERIFICATION_CODE = "keyverificationcode";
+    public static final String KEY_ID_VERIFICATION = "keyidverification";
 
     @BindView(R.id.btn_verification_code)
     Button btnVerificationCode;
@@ -59,7 +59,12 @@ public class VerificationCodeActivity extends AppCompatActivity implements View.
                 if (response.isSuccessful()){
                     Log.d(TAG, response.body().toString());
                     Toast.makeText(VerificationCodeActivity.this, "Sukses!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra(MainActivity.ID_PROFILE, id);
+                    startActivity(intent);
+
+                    startActivity(intent);
                 }else{
                     Log.d(TAG, "gagal");
                 }
@@ -79,8 +84,8 @@ public class VerificationCodeActivity extends AppCompatActivity implements View.
         String verificationCode = edtVerificationCode.getEditText().getText().toString().trim();
 
         Bundle bundle = getIntent().getExtras();
-        String confirmVerification = bundle.getString(LoginActivity.KEY_VERIFICATION_CODE);
-        int id = bundle.getInt(LoginActivity.KEY_ID_VERIFICATION);
+        String confirmVerification = bundle.getString(KEY_VERIFICATION_CODE);
+        int id = bundle.getInt(KEY_ID_VERIFICATION);
 
         if (!TextUtils.isEmpty(verificationCode)){
             if (verificationCode.equals(confirmVerification)){
