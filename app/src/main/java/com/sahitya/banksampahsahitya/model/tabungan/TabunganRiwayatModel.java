@@ -8,7 +8,7 @@ public class TabunganRiwayatModel {
     private int id;
 
     @SerializedName("penarikan")
-    private int penarikan;
+    private double penarikan;
 
     @SerializedName("created_at")
     private String createdAt;
@@ -24,11 +24,11 @@ public class TabunganRiwayatModel {
         this.id = id;
     }
 
-    public int getPenarikan() {
+    public double getPenarikan() {
         return penarikan;
     }
 
-    public void setPenarikan(int penarikan) {
+    public void setPenarikan(double penarikan) {
         this.penarikan = penarikan;
     }
 

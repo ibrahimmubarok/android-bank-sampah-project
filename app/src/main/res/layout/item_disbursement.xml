@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/item_margin_8"
+    android:layout_marginLeft="@dimen/item_margin_16"
+    android:layout_marginRight="@dimen/item_margin_16"
+    android:layout_marginBottom="@dimen/item_margin_8">
+
+    <TextView
+        android:id="@+id/tv_uang_pencairan_item_disbursement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/rp_0"
+        android:textSize="@dimen/item_size_20"
+        app:fontFamily="@font/roboto_bold"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/tv_tanggal_pencairan_item_disbursement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_uang_pencairan_item_disbursement"
+        android:layout_marginTop="@dimen/item_margin_4"
+        android:layout_marginBottom="@dimen/item_margin_8"
+        android:textSize="@dimen/item_size_12"
+        android:text="@string/_00_00_01_jan_2020"
+        app:fontFamily="@font/roboto_regular"
+        android:textColor="@color/colorFont"/>
+
+    <ImageView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_check_list_1"
+        android:layout_alignParentEnd="true" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="@dimen/item_margin_8"
+        android:layout_marginRight="@dimen/item_margin_8"
+        android:layout_below="@id/tv_tanggal_pencairan_item_disbursement"
+        android:background="@color/colorBorder" />
+
+</RelativeLayout>

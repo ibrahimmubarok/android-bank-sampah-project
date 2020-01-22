@@ -30,8 +30,16 @@ public class RegisterSuccesfullyActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                startActivity(new Intent(RegisterSuccesfullyActivity.this, LoginActivity.class));
+                finish();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(RegisterSuccesfullyActivity.this, LoginActivity.class));
+        finish();
     }
 }

@@ -61,6 +61,22 @@
     <string name="label_kode_verifikasi">Masukkan kode verifikasi yang sudah dikirim ke email anda</string>
     <string name="kirim">Kirim</string>
     <string name="lupa_sandi">Lupa Kata Sandi?</string>
+    <string name="connection_lost">Connection Lost</string>
+    <string name="label_connection_lost">Ups! Koneksi kamu terputus. Pastikan kamu tersambung ke internet ya…</string>
+    <string name="refresh">Refresh</string>
+    <string name="tanggal">Tidak Ada</string>
+    <string name="zero">0</string>
+    <string name="nomor">No.</string>
+    <string name="jenis">Jenis</string>
+    <string name="harga_kg">Harga / Kg</string>
+    <string name="password_baru">Password Baru</string>
+    <string name="simpan">Simpan</string>
+    <string name="ganti_password">Ganti Password</string>
+    <string name="pendapatan_saat_ini">Pendapatan Saat Ini</string>
+    <string name="rp_0">Rp. 0</string>
+    <string name="riwayat_pencairan">Riwayat Pencairan</string>
+    <string name="_00_00_01_jan_2020">00:00 - 01 Jan 2020</string>
+    <string name="pencairan_kosong">Anda belum pernah melakukan pencairan</string>
 
 
     <string-array name="fakultas">
@@ -86,17 +102,17 @@
     <string-array name="jurusan_fitk">
         <item>Pilih Jurusan</item>
         <item>Pendidikan Agama Islam</item>
-        <item>Pendidika Bahasa Arab</item>
+        <item>Pendidikan Bahasa Arab</item>
         <item>Pendidikan Bahasa Inggris</item>
         <item>Pendidikan Biologi</item>
         <item>Pendidikan Kimia</item>
         <item>Pendidikan Fisika</item>
         <item>Pendidikan Matematika</item>
         <item>Manajemen Pendidikan</item>
-        <item>Pendidikan Guru Madrasah Ibtidaiyah</item>
-        <item>Pendidikan Bahasa dan Sastra Indonesia</item>
-        <item>Pendidikan Ilmu Pengetahuan Sosial</item>
-        <item>Pendidikan Islam Anak Usia Dini</item>
+        <item>Pend. Guru Madrasah Ibtidaiyah</item>
+        <item>Pend. Bahasa dan Sastra Indonesia</item>
+        <item>Pend. Ilmu Pengetahuan Sosial</item>
+        <item>Pend. Islam Anak Usia Dini</item>
     </string-array>
 
     <string-array name="jurusan_adab_humaniora">

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/item_margin_4"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_nomor_sampah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nomor"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/item_size_14"/>
+
+    <TextView
+        android:id="@+id/tv_nama_sampah"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/item_margin_8"
+        android:layout_marginStart="@dimen/item_margin_8"
+        android:maxLines="2"
+        android:text="@string/jenis"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/item_size_14" />
+
+    <TextView
+        android:id="@+id/tv_harga_kilo_sampah"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/item_margin_8"
+        android:layout_marginStart="@dimen/item_margin_8"
+        android:text="@string/harga_kg"
+        android:maxLines="2"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/item_size_14"/>
+
+</LinearLayout>

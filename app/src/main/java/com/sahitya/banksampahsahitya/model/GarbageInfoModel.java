@@ -13,12 +13,12 @@ public class GarbageInfoModel {
     private String nama;
 
     @SerializedName("harga_per_kilo")
-    private int hargaPerKilo;
+    private double hargaPerKilo;
 
     public GarbageInfoModel(){
     }
 
-    public GarbageInfoModel(int id, String kategori, String nama, int hargaPerKilo) {
+    public GarbageInfoModel(int id, String kategori, String nama, double hargaPerKilo) {
         this.id = id;
         this.kategori = kategori;
         this.nama = nama;
@@ -49,11 +49,11 @@ public class GarbageInfoModel {
         this.nama = nama;
     }
 
-    public int getHargaPerKilo() {
+    public double getHargaPerKilo() {
         return hargaPerKilo;
     }
 
-    public void setHargaPerKilo(int hargaPerKilo) {
+    public void setHargaPerKilo(double hargaPerKilo) {
         this.hargaPerKilo = hargaPerKilo;
     }
 }

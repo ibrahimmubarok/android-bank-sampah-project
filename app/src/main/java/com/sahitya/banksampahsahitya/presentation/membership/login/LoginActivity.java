@@ -2,7 +2,10 @@ package com.sahitya.banksampahsahitya.presentation.membership.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,12 +20,16 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.sahitya.banksampahsahitya.ForgotPasswordActivity;
+import com.sahitya.banksampahsahitya.MainActivity;
 import com.sahitya.banksampahsahitya.R;
 import com.sahitya.banksampahsahitya.RegisterActivity;
 import com.sahitya.banksampahsahitya.VerificationCodeActivity;
 import com.sahitya.banksampahsahitya.model.LoginModel;
+import com.sahitya.banksampahsahitya.model.VerifikasiModel;
 import com.sahitya.banksampahsahitya.rest.service.LoginService;
+import com.sahitya.banksampahsahitya.rest.service.VerificationService;
 import com.sahitya.banksampahsahitya.utils.LoginUtils;
+import com.sahitya.banksampahsahitya.utils.VerificationUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,7 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher{
 
     private final String TAG = LoginActivity.class.getSimpleName();
 
@@ -53,7 +60,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Unbinder unbinder;
 
     private ProgressDialog loading;
+
     private LoginService mLoginService;
+    private VerificationService mVerificationService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,51 +72,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         unbinder = ButterKnife.bind(this);
 
         mLoginService = LoginUtils.getLoginService();
+        mVerificationService = VerificationUtils.getVerificationService();
 
-        textInputEmail.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        textInputEmail.setText("yantootnay@gmail.com");
+        textInputPassword.setText("iniikhsan");
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String input = textInputPassword.getText().toString().trim();
-
-                if (charSequence.toString().trim().length() != 0 && !input.isEmpty()){
-                    validasiField(true);
-                }else{
-                    validasiField(false);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
-        textInputPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String input = textInputEmail.getText().toString().trim();
-
-                if (charSequence.toString().trim().length() != 0 && !input.isEmpty()){
-                    validasiField(true);
-                }else{
-                    validasiField(false);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
+        textInputEmail.addTextChangedListener(this);
+        textInputPassword.addTextChangedListener(this);
 
         btnLogin.setOnClickListener(this);
         tvSignUp.setOnClickListener(this);
@@ -149,26 +120,32 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    public void sendLoginPost(String email, String password){
+    private void sendLoginPost(String email, String password){
         mLoginService.saveLoginPost(email, password).enqueue(new Callback<LoginModel>() {
             @Override
             public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
                 loading.dismiss();
-                String error = response.body().getError();
                 if (response.isSuccessful()){
-                    if (response.body().getVerified() != 0){
-                        Log.d(TAG, response.body().toString());
-                        Log.d(TAG, response.body().getKodeVerifikasi());
-                        Log.d(TAG, "Sukses");
-                    }
+                    if (response.body().getId() != 0){
+                        if (response.body().getVerified() == 0) {
+                            Log.d(TAG, response.body().toString());
+                            Log.d(TAG, response.body().getKodeVerifikasi());
+                            Log.d(TAG, "Sukses");
 
-                    if (response.body().getVerified() == 0){
-                        Toast.makeText(LoginActivity.this, "Email atau password salah", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, VerificationCodeActivity.class);
+                            intent.putExtra(VerificationCodeActivity.KEY_VERIFICATION_CODE, response.body().getKodeVerifikasi());
+                            intent.putExtra(VerificationCodeActivity.KEY_ID_VERIFICATION, response.body().getId());
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            Log.d(TAG, response.body().toString());
+                            Log.d(TAG, response.body().getKodeVerifikasi());
+                            Log.d(TAG, "Sukses");
+
+                            sendAccountVerify(response.body().getId(), response.body().getKodeVerifikasi());
+                        }
                     }else{
-                        Intent intent = new Intent(getApplicationContext(), VerificationCodeActivity.class);
-                        intent.putExtra(VerificationCodeActivity.KEY_VERIFICATION_CODE, response.body().getKodeVerifikasi());
-                        intent.putExtra(VerificationCodeActivity.KEY_ID_VERIFICATION, response.body().getId());
-                        startActivity(intent);
+                        showDialog("Email atau password salah", "Login Gagal");
                     }
                 }else{
                     Log.d(TAG, "Gagal");
@@ -176,10 +153,79 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
             @Override
             public void onFailure(Call<LoginModel> call, Throwable t) {
-                loading.dismiss();
                 Log.d(TAG, "unable to submit post to API");
                 Log.d(TAG, t.getMessage());
+                showDialog("Periksa kembali koneksi internet anda", "Tidak Ada Koneksi");
+                loading.dismiss();
             }
         });
+    }
+
+    private void sendAccountVerify(int id, String kode){
+        mVerificationService.saveVerifikasiPost(id, kode).enqueue(new Callback<VerifikasiModel>() {
+            @Override
+            public void onResponse(Call<VerifikasiModel> call, Response<VerifikasiModel> response) {
+                loading.dismiss();
+                if (response.isSuccessful()){
+                    Log.d(TAG, response.body().toString());
+                    Toast.makeText(LoginActivity.this, "Sukses!", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra(MainActivity.ID_PROFILE, id);
+                    intent.putExtra(MainActivity.NAMA_NASABAH, response.body().getName());
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Log.d(TAG, "gagal");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<VerifikasiModel> call, Throwable t) {
+                Log.e(TAG, t.getMessage());
+                loading.dismiss();
+            }
+        });
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+        String inputPassword = textInputPassword.getText().toString().trim();
+        String inputEmail = textInputEmail.getText().toString().trim();
+
+        if (!inputPassword.isEmpty() && !inputEmail.isEmpty()){
+            validasiField(true);
+        }else{
+            validasiField(false);
+        }
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
+
+    }
+
+    private void showDialog(String message, String title){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message);
+        builder.setTitle(title);
+        builder.setCancelable(true);
+
+        builder.setPositiveButton(
+                "Iya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                }
+        );
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

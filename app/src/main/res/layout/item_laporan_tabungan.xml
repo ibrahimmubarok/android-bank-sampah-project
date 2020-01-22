@@ -36,34 +36,36 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/item_margin_128"
                         android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/item_margin_32"
+                        android:layout_marginEnd="@dimen/item_margin_32"
                         android:text="@string/label_week"
                         android:textStyle="bold"
-                        android:layout_marginRight="230dp"
                         android:textColor="@android:color/black"/>
 
                     <TextView
                         android:id="@+id/tv_berat_laporan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="@dimen/item_margin_8"
-                        android:layout_marginStart="@dimen/item_margin_8"
+                        android:layout_marginLeft="@dimen/item_margin_32"
+                        android:layout_marginStart="@dimen/item_margin_32"
                         android:layout_gravity="right"
                         android:gravity="right"
                         android:paddingLeft="@dimen/item_margin_2"
                         android:paddingRight="@dimen/item_margin_2"
                         android:text="@string/label_weight_small"
-                        android:textSize="@dimen/item_size_12"
+                        android:textSize="@dimen/item_size_14"
                         android:textStyle="bold"
                         android:textColor="@android:color/black"/>
 
                     <TextView
+                        android:id="@+id/tv_berat_detail_laporan"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
-                        android:text="@string/label_value_weight"
-                        android:textSize="@dimen/item_size_12"
+                        android:text="@string/zero"
+                        android:textSize="@dimen/item_size_14"
                         android:textStyle="bold"
                         android:textColor="@android:color/black"/>
 
@@ -73,7 +75,7 @@
                         android:layout_marginLeft="@dimen/item_margin_4"
                         android:layout_gravity="right"
                         android:text="@string/unit_weight"
-                        android:textSize="@dimen/item_size_12"
+                        android:textSize="@dimen/item_size_14"
                         android:textStyle="bold"
                         android:textColor="@android:color/black"/>
 
@@ -98,7 +100,8 @@
                         android:layout_width="@dimen/item_margin_196"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/item_margin_8"
-                        android:text="@string/value_amount"
+                        android:layout_marginStart="@dimen/item_margin_8"
+                        android:text="@string/zero"
                         android:textStyle="bold"
                         android:textSize="@dimen/item_size_20"
                         android:textColor="@color/colorPrimaryDark"/>

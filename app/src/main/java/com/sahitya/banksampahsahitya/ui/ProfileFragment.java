@@ -1,21 +1,22 @@
 package com.sahitya.banksampahsahitya.ui;
 
-import android.app.ProgressDialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.sahitya.banksampahsahitya.MainActivity;
 import com.sahitya.banksampahsahitya.R;
-import com.sahitya.banksampahsahitya.VerificationCodeActivity;
 import com.sahitya.banksampahsahitya.model.ItemProfileModel;
 import com.sahitya.banksampahsahitya.model.ProfileUserModel;
 import com.sahitya.banksampahsahitya.presentation.adapter.ProfileAdapter;
@@ -28,8 +29,6 @@ import com.sahitya.banksampahsahitya.utils.ProfileUtils;
 
 import java.util.ArrayList;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -55,12 +54,16 @@ public class ProfileFragment extends Fragment {
     RecyclerView rvProfile;
     @BindView(R.id.container_logout)
     LinearLayout containerLogout;
-    @BindView(R.id.linear_profile)
+    @BindView(R.id.main_layout_profile)
     LinearLayout linearProfile;
+    @BindView(R.id.layout_no_koneksi)
+    FrameLayout noInternetLayout;
+    @BindView(R.id.tv_refresh_connection)
+    TextView tvRefresh;
+    @BindView(R.id.progress_bar_profile)
+    ProgressBar progressBar;
 
     private Unbinder unbinder;
-
-    private ProgressDialog loading;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -78,13 +81,22 @@ public class ProfileFragment extends Fragment {
 
         unbinder = ButterKnife.bind(this, view);
 
-        loading = ProgressDialog.show(getContext(), null, "Harap Tunggu...", true, false);
+        progressBar.setVisibility(View.VISIBLE);
 
         setListMenuProfile();
 
         setLogoutAccount();
 
-        profileModel.asyncProfileUser(MainActivity.idUser);
+        profileModel.asyncProfileUser(MainActivity.idUser, progressBar ,linearProfile, noInternetLayout);
+
+        tvRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
+                noInternetLayout.setVisibility(View.GONE);
+                profileModel.asyncProfileUser(MainActivity.idUser, progressBar ,linearProfile, noInternetLayout);
+            }
+        });
 
         return view;
     }
@@ -93,8 +105,32 @@ public class ProfileFragment extends Fragment {
         containerLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Logout", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getContext(), LoginActivity.class));
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Apakah Kamu Yakin Ingin Log Out?");
+                builder.setTitle("Log Out");
+                builder.setCancelable(true);
+
+                builder.setPositiveButton(
+                        "Iya", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(getContext(), "Logout", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getContext(), LoginActivity.class));
+                            }
+                        }
+                );
+
+                builder.setNegativeButton(
+                        "Tidak", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                            }
+                        }
+                );
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
     }
@@ -144,7 +180,9 @@ public class ProfileFragment extends Fragment {
                 tvEmail.setText(profileUserModel.get(0).getEmail());
                 tvName.setText(profileUserModel.get(0).getName());
                 Log.d(TAG, "Ada Data");
-                loading.dismiss();
+                progressBar.setVisibility(View.GONE);
+            }else{
+                progressBar.setVisibility(View.GONE);
             }
         }
     };

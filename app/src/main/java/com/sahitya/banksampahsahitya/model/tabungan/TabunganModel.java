@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class TabunganModel {
 
     @SerializedName("saldo")
-    private int saldo;
+    private double saldo;
 
     @SerializedName("berat")
     private double berat;
@@ -18,11 +18,11 @@ public class TabunganModel {
     public TabunganModel(){
     }
 
-    public int getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(int saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 

@@ -1,6 +1,11 @@
 package com.sahitya.banksampahsahitya.utils;
 
+import android.app.ProgressDialog;
 import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -23,25 +28,32 @@ public class TabunganUtils extends ViewModel {
     private MutableLiveData<ArrayList<TabunganRiwayatModel>> mutableLiveDataRiwayat = new MutableLiveData<>();
     private MutableLiveData<ArrayList<TabunganModel>> mutableLiveDataTabungan = new MutableLiveData<>();
 
-    public void asyncTabungan(int id){
+    public void asyncTabungan(int id, ProgressBar loading, LinearLayout linearLayout, FrameLayout frameLayout){
         TabunganService tabunganService = ApiClient.getClient().create(TabunganService.class);
 
-        final ArrayList<TabunganRiwayatModel> tabunganArrayList = new ArrayList<>();
+        final ArrayList<TabunganRiwayatModel> riwayatArrayList = new ArrayList<>();
 
         Call<TabunganModel> call = tabunganService.getTabunganUser(id);
         call.enqueue(new Callback<TabunganModel>() {
             @Override
             public void onResponse(Call<TabunganModel> call, Response<TabunganModel> response) {
-                ArrayList<TabunganRiwayatModel> riwayatList = response.body().getRiwayat();
 
+                ArrayList<TabunganRiwayatModel> riwayatList = response.body().getRiwayat();
                 ArrayList<TabunganModel> tabunganList = new ArrayList<>();
 
                 if (!response.isSuccessful()){
                     return;
                 }
 
-                Log.d("Saldo", String.valueOf(response.body().getSaldo()));
-                Log.d("berat", String.valueOf(response.body().getBerat()));
+                TabunganModel tm = new TabunganModel();
+
+                tm.setSaldo(response.body().getSaldo());
+                tm.setBerat(response.body().getBerat());
+
+                tabunganList.add(tm);
+
+                Log.d("Saldo", String.valueOf(tabunganList.get(0).getSaldo()));
+                Log.d("berat", String.valueOf(tabunganList.get(0).getBerat()));
 
                 for (TabunganRiwayatModel r : riwayatList){
                     TabunganRiwayatModel tb = new TabunganRiwayatModel();
@@ -50,21 +62,24 @@ public class TabunganUtils extends ViewModel {
                     Log.d(TAG, String.valueOf(r.getPenarikan()));
                     tb.setCreatedAt(r.getCreatedAt());
                     Log.d(TAG, r.getCreatedAt());
-                    tb.setCreatedAt(String.valueOf(r.getId()));
+                    tb.setCreatedAt(String.valueOf(r.getCreatedAt()));
 
-                    tabunganArrayList.add(tb);
+                    riwayatArrayList.add(tb);
                 }
 
-                tabunganList.add(new TabunganModel());
-
-                mutableLiveDataRiwayat.postValue(tabunganArrayList);
-
+                mutableLiveDataRiwayat.postValue(riwayatArrayList);
                 mutableLiveDataTabungan.postValue(tabunganList);
+
+                linearLayout.setVisibility(View.VISIBLE);
+                frameLayout.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<TabunganModel> call, Throwable t) {
                 Log.e(TAG, t.toString());
+                linearLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                loading.setVisibility(View.GONE);
             }
         });
     }

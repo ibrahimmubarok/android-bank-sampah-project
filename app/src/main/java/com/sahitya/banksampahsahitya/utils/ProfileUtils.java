@@ -1,11 +1,17 @@
 package com.sahitya.banksampahsahitya.utils;
 
+import android.app.ProgressDialog;
 import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.sahitya.banksampahsahitya.MainActivity;
 import com.sahitya.banksampahsahitya.model.ProfileUserModel;
 import com.sahitya.banksampahsahitya.rest.client.ApiClient;
 import com.sahitya.banksampahsahitya.rest.service.ProfileService;
@@ -21,7 +27,7 @@ public class ProfileUtils extends ViewModel {
 
     private MutableLiveData<ArrayList<ProfileUserModel>> mutableLiveDataProfile = new MutableLiveData<>();
 
-    public void asyncProfileUser(int id){
+    public void asyncProfileUser(int id, ProgressBar loading, LinearLayout linearLayout, FrameLayout frameLayout){
         ProfileService profileService = ApiClient.getClient().create(ProfileService.class);
 
         final ArrayList<ProfileUserModel> listProfile = new ArrayList<>();
@@ -45,11 +51,17 @@ public class ProfileUtils extends ViewModel {
                 listProfile.add(profileModel);
 
                 mutableLiveDataProfile.postValue(listProfile);
+
+                linearLayout.setVisibility(View.VISIBLE);
+                frameLayout.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<ProfileUserModel> call, Throwable t) {
                 Log.e(TAG, t.toString());
+                linearLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                loading.setVisibility(View.GONE);
             }
         });
     }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".VerificationCodeActivity">
 
     <LinearLayout
@@ -11,19 +12,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_forgot_password"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/white"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-        </com.google.android.material.appbar.AppBarLayout>
+        <ImageView
+            android:id="@+id/img_back_arrow_verification"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_margin="@dimen/item_margin_16"
+            android:background="@drawable/circle_shape"
+            android:src="@drawable/ic_arrow_back_green_24dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -91,6 +86,7 @@
                 android:layout_marginBottom="@dimen/item_margin_12">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_kode_verifikasi"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/item_margin_56"
@@ -109,11 +105,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/item_margin_8"
                 android:layout_marginBottom="@dimen/item_margin_16"
-                android:background="@drawable/bg_rounded_green"
+                android:background="@drawable/bg_rounded_green_false"
                 android:text="@string/kirim"
                 android:textSize="@dimen/item_size_14"
                 android:textStyle="bold"
-                android:textColor="@color/colorItemBackground"/>
+                android:textColor="@color/colorItemBackground"
+                android:enabled="false"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

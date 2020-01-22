@@ -84,7 +84,7 @@ public class PeringkatFragment extends Fragment {
         @Override
         public void onChanged(ArrayList<RankingModel> rankingModels) {
             if (rankingModels != null){
-                adapter.setData(rankingArrayList);
+                adapter.setData(rankingModels);
                 Log.d(TAG, "Ada Data");
             }
         }

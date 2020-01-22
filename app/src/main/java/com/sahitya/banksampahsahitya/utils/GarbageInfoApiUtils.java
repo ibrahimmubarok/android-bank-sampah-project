@@ -1,6 +1,11 @@
 package com.sahitya.banksampahsahitya.utils;
 
+import android.app.ProgressDialog;
 import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -21,7 +26,7 @@ public class GarbageInfoApiUtils extends ViewModel {
 
     private MutableLiveData<ArrayList<GarbageInfoModel>> mutableLiveDataGarbageInfo = new MutableLiveData<>();
 
-    public void asyncGarbageInfoData(){
+    public void asyncGarbageInfoData(ProgressBar loading, LinearLayout linearLayout, FrameLayout frameLayout){
         GarbageInfoService garbageInfoService = ApiClient.getClient().create(GarbageInfoService.class);
 
         final ArrayList<GarbageInfoModel> listGarbageInfo = new ArrayList<>();
@@ -47,11 +52,17 @@ public class GarbageInfoApiUtils extends ViewModel {
                     listGarbageInfo.add(garbageInfoModel);
                 }
                 mutableLiveDataGarbageInfo.postValue(listGarbageInfo);
+
+                linearLayout.setVisibility(View.VISIBLE);
+                frameLayout.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<ArrayList<GarbageInfoModel>> call, Throwable t) {
                 Log.d(TAG, t.toString());
+                linearLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                loading.setVisibility(View.GONE);
             }
         });
     }

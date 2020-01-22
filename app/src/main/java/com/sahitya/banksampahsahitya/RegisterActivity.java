@@ -1,12 +1,18 @@
 package com.sahitya.banksampahsahitya;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,7 +20,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.sahitya.banksampahsahitya.model.RegistersModel;
 import com.sahitya.banksampahsahitya.rest.service.RegisterApiService;
@@ -28,7 +33,6 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -62,6 +66,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText editTextKonfirmasiPassword;
     @BindView(R.id.btn_daftar_register)
     Button btnDaftar;
+    @BindView(R.id.toolbar_register)
+    Toolbar toolbar;
 
     private Unbinder unbinder;
     private RegisterApiService mRegisterApiService;
@@ -87,6 +93,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         mRegisterApiService = RegisterApiUtils.getRegisterApiService();
 
+        setSupportActionBar(toolbar);
+
+        if (getSupportActionBar() != null){
+            toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+            getSupportActionBar().setTitle(R.string.daftar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+        }
+
         spinnerFakultas.setOnItemSelectedListener(this);
         spinnerJurusan.setOnItemSelectedListener(this);
         btnDaftar.setOnClickListener(this);
@@ -107,15 +124,39 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(nim) && !fakultas.equals("Pilih Fakultas") && !jurusan.equals("Pilih Jurusan") && !TextUtils.isEmpty(noHp) && !TextUtils.isEmpty(alamat) && !TextUtils.isEmpty(ttl) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(konfirmasiPassword)){
                 if (password.equals(konfirmasiPassword)){
-                    loading = ProgressDialog.show(this, null, "Harap Tunggu...", true, false);
-                    sendRegisterPost(name, email, password, konfirmasiPassword, nim, fakultas, jurusan, noHp, alamat, ttl);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("Apakah anda yakin data yang dimasukkan benar?");
+                    builder.setTitle("Register");
+                    builder.setCancelable(true);
+
+                    builder.setPositiveButton(
+                            "Iya", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    loading = ProgressDialog.show(RegisterActivity.this, null, "Harap Tunggu...", true, false);
+                                    sendRegisterPost(name, email, password, konfirmasiPassword, nim, fakultas, jurusan, noHp, alamat, ttl);
+                                }
+                            }
+                    );
+
+                    builder.setNegativeButton(
+                            "Tidak", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            }
+                    );
+
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }else{
-                    Toast.makeText(this, "Password Tidak Sama", Toast.LENGTH_SHORT).show();
+                    showDialog("Password tidak sama", "Password error");
                 }
             }else if (fakultas.equals("Pilih Fakultas") || jurusan.equals("Pilih Jurusan")){
-                Toast.makeText(this, "Fakultas atau Jurusan harus dipilih", Toast.LENGTH_SHORT).show();
+                showDialog("Fakultas atau jurusan harus dipilih", "Field Kosong");
             }else{
-                Toast.makeText(this, "Field Tidak Boleh Kosong", Toast.LENGTH_SHORT).show();
+                showDialog("Field Tidak Boleh Ada Yang Kosong", "Field Kosong");
             }
         }else if (view.getId() == R.id.btn_set_calendar){
             DatePickerFragment datePickerFragment = new DatePickerFragment();
@@ -123,7 +164,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home){
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void sendRegisterPost(String name, String email, String password, String konfirmasiPassword, String nim, String fakultas, String jurusan, String noHp, String alamat, String ttl ) {
         mRegisterApiService.saveRegisterPost(name, email, password, konfirmasiPassword, nim, fakultas, jurusan, noHp, alamat, ttl).enqueue(new Callback<RegistersModel>() {
@@ -133,11 +180,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     loading.dismiss();
                     Log.d(TAG, response.body().toString());
                     startActivity(new Intent(getApplicationContext(), RegisterSuccesfullyActivity.class));
+                    finish();
                     Log.d(TAG, "Sukses");
                 }else{
+                    showDialog("Anda Tidak Berhasil Mendaftar", "Register Gagal");
                     loading.dismiss();
-                    Log.d(TAG, "Gagal");
-                    Toast.makeText(RegisterActivity.this, "Anda tidak berhasil register", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -171,7 +218,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_no_selected, android.R.layout.simple_spinner_item);
                     adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Ilmu Tarbiyah dan Keguruan")){
+                }else if (fakultas.equals("Ilmu Tarbiyah Dan Keguruan")){
                     adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_fitk, android.R.layout.simple_spinner_item);
                     adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerJurusan.setAdapter(adapterJurusan);
@@ -231,5 +278,24 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
+    }
+
+    private void showDialog(String message, String title){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(message);
+        builder.setTitle(title);
+        builder.setCancelable(true);
+
+        builder.setPositiveButton(
+                "Iya", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                }
+        );
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 }

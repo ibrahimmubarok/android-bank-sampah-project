@@ -4,9 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.os.Bundle;
-import android.util.Log;
+import android.os.Bundle;;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -19,8 +17,9 @@ import com.sahitya.banksampahsahitya.ui.TabunganFragment;
 public class MainActivity extends AppCompatActivity {
 
     public static int idUser;
-
+    public static String namaNasabah;
     public static String ID_PROFILE = "id_profile";
+    public static String NAMA_NASABAH = "nama_nasabah";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         idUser = bundle.getInt(ID_PROFILE);
+        namaNasabah = bundle.getString(NAMA_NASABAH);
 
         loadFragment(new TabunganFragment());
 

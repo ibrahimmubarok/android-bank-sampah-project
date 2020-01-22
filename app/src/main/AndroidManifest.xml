@@ -3,6 +3,8 @@
     package="com.sahitya.banksampahsahitya">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -11,16 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VerificationCodeActivity"></activity>
+        <activity android:name=".VerificationCodeActivity"/>
         <activity android:name=".RegisterSuccesfullyActivity" />
-        <activity android:name=".RegisterActivity" />
+        <activity android:name=".RegisterActivity"/>
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".presentation.membership.SettingsActivity" />
         <activity android:name=".presentation.membership.changepassword.ChangePasswordActivity" />
         <activity android:name=".presentation.membership.editprofile.EditProfileActivity" />
         <activity android:name=".presentation.membership.disbursement.DisbursementActivity" />
-        <activity android:name=".presentation.membership.login.LoginActivity">
-        </activity>
+        <activity android:name=".presentation.membership.login.LoginActivity"/>
         <activity android:name=".SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
