@@ -14,7 +14,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.sahitya.banksampahsahitya.model.ForgotPasswordModel;
 import com.sahitya.banksampahsahitya.presentation.membership.login.LoginActivity;
 import com.sahitya.banksampahsahitya.rest.service.ForgotPasswordService;
 import com.sahitya.banksampahsahitya.utils.ForgotPasswordUtils;
@@ -22,6 +21,7 @@ import com.sahitya.banksampahsahitya.utils.ForgotPasswordUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -79,7 +79,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
     public void onClick(View view) {
         if (view.getId() == R.id.btn_send_email_forgot_password) {
             String email = edtForgotPassword.getText().toString().trim();
-            loading = ProgressDialog.show(this, null, "Mengirim Email...", true, false);
+            loading = ProgressDialog.show(ForgotPasswordActivity.this, null, "Mengirim Email...", true, false);
             sendForgotPassword(email);
         }else if (view.getId() == R.id.img_back_arrow){
             onBackPressed();
@@ -87,9 +87,10 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
     }
 
     private void sendForgotPassword(String email) {
-        mForgotPasswordService.saveForgotPasswordPost(email).enqueue(new Callback<ForgotPasswordModel>() {
+        mForgotPasswordService.saveForgotPasswordPost(email).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<ForgotPasswordModel> call, Response<ForgotPasswordModel> response) {
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                loading.dismiss();
                 Log.d("Email Terkirim", response.body().toString());
                 Toast.makeText(ForgotPasswordActivity.this, "Email Berhasil Dikirim", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
@@ -97,7 +98,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
             }
 
             @Override
-            public void onFailure(Call<ForgotPasswordModel> call, Throwable t) {
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
                 loading.dismiss();
                 Log.d(TAG,"Unable Post To API");
                 Log.e(TAG, t.getMessage());
@@ -115,5 +116,15 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
             btnForgotPassword.setBackgroundResource(R.drawable.bg_rounded_green_false);
         }
         return b;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

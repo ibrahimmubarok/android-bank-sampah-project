@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layout_disbursement"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
     tools:context=".presentation.membership.disbursement.DisbursementActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
@@ -21,8 +21,20 @@
             android:background="@color/colorProfile"
             android:textAlignment="center"
             app:titleTextColor="@color/black"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/item_margin_60"
+                android:layout_marginEnd="@dimen/item_margin_60"
+                app:fontFamily="@font/coolvetica_rg"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/item_size_22"
+                android:text="@string/label_submenu_profile"
+                android:gravity="center"/>
+
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <ProgressBar
@@ -31,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_centerInParent="true"
         android:visibility="gone"/>
 
     <include
@@ -38,59 +51,73 @@
         layout="@layout/fragment_no_internet"
         android:visibility="gone"/>
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/layout_disbursement"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_view_border"
-        android:text="@string/pendapatan_saat_ini"
-        app:fontFamily="@font/roboto_bold"
-        android:textColor="@android:color/black"
-        android:padding="@dimen/item_margin_16"/>
+        android:layout_below="@id/appbar"
+        android:orientation="vertical"
+        android:visibility="visible">
 
-    <TextView
-        android:id="@+id/tv_jumlah_pencairan_disbursement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/rp_0"
-        android:textSize="@dimen/item_size_26"
-        app:fontFamily="@font/roboto_bold"
-        android:textColor="@android:color/black"
-        android:paddingTop="@dimen/item_margin_32"
-        android:paddingLeft="@dimen/item_margin_16"
-        android:paddingRight="@dimen/item_margin_16"
-        android:paddingBottom="@dimen/item_margin_32"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_view_border"
+            android:text="@string/pendapatan_saat_ini"
+            app:fontFamily="@font/coolvetica_rg"
+            android:textColor="@android:color/black"
+            android:paddingLeft="@dimen/item_margin_20"
+            android:paddingTop="@dimen/item_margin_16"
+            android:paddingBottom="@dimen/item_margin_16"
+            android:paddingRight="@dimen/item_margin_20"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_view_border"
-        android:text="@string/riwayat_pencairan"
-        app:fontFamily="@font/roboto_bold"
-        android:textColor="@android:color/black"
-        android:padding="@dimen/item_margin_16"/>
+        <TextView
+            android:id="@+id/tv_jumlah_pencairan_disbursement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rp_0"
+            android:textSize="@dimen/item_size_26"
+            app:fontFamily="@font/coolvetica_rg"
+            android:textColor="@android:color/black"
+            android:paddingTop="@dimen/item_margin_32"
+            android:paddingLeft="@dimen/item_margin_20"
+            android:paddingRight="@dimen/item_margin_20"
+            android:paddingBottom="@dimen/item_margin_32"/>
 
-    <TextView
-        android:id="@+id/tv_kosong_disbursement"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/pencairan_kosong"
-        android:textSize="@dimen/item_size_18"
-        app:fontFamily="@font/roboto_regular"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:paddingTop="@dimen/item_margin_32"
-        android:paddingLeft="@dimen/item_margin_16"
-        android:paddingRight="@dimen/item_margin_16"
-        android:paddingBottom="@dimen/item_margin_32"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_view_border"
+            android:text="@string/riwayat_pencairan"
+            app:fontFamily="@font/coolvetica_rg"
+            android:textColor="@android:color/black"
+            android:paddingLeft="@dimen/item_margin_20"
+            android:paddingTop="@dimen/item_margin_16"
+            android:paddingBottom="@dimen/item_margin_16"
+            android:paddingRight="@dimen/item_margin_20"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_disbursement"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="@dimen/item_margin_16"
-        android:paddingBottom="@dimen/item_margin_16"
-        tools:listitem="@layout/item_disbursement"
-        android:visibility="gone"/>
+        <TextView
+            android:id="@+id/tv_kosong_disbursement"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/pencairan_kosong"
+            android:textSize="@dimen/item_size_18"
+            app:fontFamily="@font/roboto_regular"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:textColor="@android:color/black"
+            android:paddingTop="@dimen/item_margin_32"
+            android:paddingLeft="@dimen/item_margin_20"
+            android:paddingRight="@dimen/item_margin_20"
+            android:paddingBottom="@dimen/item_margin_32"
+            android:visibility="gone"/>
 
-</LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_disbursement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_disbursement"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+</RelativeLayout>

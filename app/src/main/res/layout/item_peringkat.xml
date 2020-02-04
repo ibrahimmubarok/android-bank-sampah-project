@@ -1,69 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/item_margin_2">
 
     <LinearLayout
+        android:id="@+id/linear_layout_shadow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:paddingLeft="1dp"
-        android:paddingRight="1dp"
-        android:paddingBottom="4dp"
-        android:background="@drawable/shadow"
+        android:layout_marginTop="@dimen/item_margin_4"
+        android:paddingLeft="@dimen/item_margin_1"
+        android:paddingRight="@dimen/item_margin_1"
+        android:paddingBottom="@dimen/item_margin_4"
+        android:background="@drawable/bg_shadow_ranking_1"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:divider="@android:color/transparent"
-            card_view:cardElevation="10dp"
-            app:cardCornerRadius="8dp">
+            card_view:cardElevation="4dp"
+            app:cardCornerRadius="@dimen/item_margin_16">
 
-            <LinearLayout
+            <RelativeLayout
+                android:id="@+id/relative_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:background="@drawable/shadow_card_view"
-                android:orientation="vertical">
+                android:padding="@dimen/item_margin_12"
+                android:background="@drawable/bg_ranking_1">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_nomor_ranking"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingTop="6dp"
-                    android:orientation="horizontal">
+                    android:layout_marginLeft="@dimen/item_margin_8"
+                    android:layout_marginStart="@dimen/item_margin_8"
+                    android:text="@string/nomor"
+                    android:textSize="@dimen/item_size_20"
+                    android:textColor="@color/white"
+                    app:fontFamily="@font/coolvetica_rg"/>
 
-                    <TextView
-                        android:id="@+id/tv_name_peringkat_ranking"
-                        android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:text="@string/nama_random_winner"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorPrimaryDark"/>
 
-                    <TextView
-                        android:id="@+id/tv_nilai_peringkat_ranking"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginStart="8dp"
-                        android:text="@string/null_value"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorPrimaryDark"
-                        android:textAlignment="viewEnd"
-                        android:layout_weight="1"
-                        android:gravity="end"/>
-                </LinearLayout>
-            </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_name_peringkat_ranking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/item_margin_16"
+                    android:layout_marginLeft="@dimen/item_margin_16"
+                    android:layout_toEndOf="@+id/tv_nomor_ranking"
+                    android:layout_toRightOf="@+id/tv_nomor_ranking"
+                    android:maxLines="2"
+                    android:text="@string/nama_random_winner"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/item_size_20"
+                    app:fontFamily="@font/coolvetica_rg"/>
+
+                <TextView
+                    android:id="@+id/tv_nilai_peringkat_ranking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/item_margin_8"
+                    android:layout_marginStart="@dimen/item_margin_8"
+                    android:text="@string/null_value"
+                    android:textSize="@dimen/item_size_20"
+                    android:textColor="@color/white"
+                    android:textAlignment="viewEnd"
+                    android:gravity="end"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    app:fontFamily="@font/coolvetica_rg"/>
+            </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

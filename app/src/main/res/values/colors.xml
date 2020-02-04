@@ -14,4 +14,13 @@
     <color name="background">#FAFAFA</color>
     <color name="colorProfile">#EEEEEE</color>
     <color name="colorBorder">#EBEBEB</color>
+    <color name="colorBorderDark">#D4D4D4</color>
+    <color name="colorTopAppInfo">#B2FF47</color>
+    <color name="colorBottomAppInfo">#295902</color>
+    <color name="colorRankingOne">#FCC62D</color>
+    <color name="colorRankingTwo">#C4C4C4</color>
+    <color name="colorRankingThree">#E9A24A</color>
+    <color name="colorShadowRankingOne">#E3B329</color>
+    <color name="colorShadowRankingTwo">#A4A4A4</color>
+    <color name="colorShadowRankingThree">#D0903F</color>
 </resources>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/item_margin_8">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_tanggal_week_tabungan"
+            android:layout_width="@dimen/item_margin_60"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/item_margin_8"
+            android:layout_marginEnd="@dimen/item_margin_8"
+            android:text="31-12-2019"
+            android:textSize="@dimen/item_size_12"
+            android:textColor="@color/colorPrimaryDark"
+            app:fontFamily="@font/coolvetica_rg"/>
+
+        <TextView
+            android:id="@+id/tv_nama_sampah_week_tabungan"
+            android:layout_width="@dimen/item_margin_90"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/item_margin_8"
+            android:layout_marginEnd="@dimen/item_margin_8"
+            android:maxLines="2"
+            android:text="Alumunium/A"
+            android:textSize="@dimen/item_size_12"
+            android:textColor="@color/colorPrimaryDark"
+            app:fontFamily="@font/coolvetica_rg"/>
+
+        <TextView
+            android:id="@+id/tv_berat_week_tabungan"
+            android:layout_width="@dimen/item_margin_48"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/item_margin_8"
+            android:layout_marginEnd="@dimen/item_margin_8"
+            android:text="60 Kg"
+            android:textSize="@dimen/item_size_12"
+            android:textColor="@color/colorPrimaryDark"
+            app:fontFamily="@font/coolvetica_rg"/>
+
+        <TextView
+            android:id="@+id/tv_saldo_week_tabungan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp 900,000"
+            android:textSize="@dimen/item_size_12"
+            android:textColor="@color/colorPrimaryDark"
+            app:fontFamily="@font/coolvetica_rg"/>
+    </TableRow>
+</TableLayout>

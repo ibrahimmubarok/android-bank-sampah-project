@@ -40,11 +40,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/nama"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorFont"
                 android:layout_marginTop="@dimen/item_margin_16"
                 android:layout_marginLeft="@dimen/item_margin_8"
                 android:layout_marginStart="@dimen/item_margin_8"
-                android:layout_marginBottom="@dimen/item_margin_8" />
+                android:layout_marginBottom="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <EditText
                 android:id="@+id/edit_text_name_register"
@@ -53,17 +54,20 @@
                 android:padding="@dimen/item_margin_12"
                 android:background="@drawable/bg_rounded_edit_text"
                 android:textSize="@dimen/item_size_14"
-                android:textColor="@color/colorFont"
+                android:textColor="@color/black"
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
-                android:hint="@string/nama"/>
+                android:inputType="text"
+                android:hint="@string/nama"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/nim"
-                android:textColor="@android:color/black"
-                android:layout_margin="@dimen/item_margin_8" />
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <EditText
                 android:id="@+id/edit_text_nim_register"
@@ -72,56 +76,64 @@
                 android:padding="@dimen/item_margin_12"
                 android:background="@drawable/bg_rounded_edit_text"
                 android:textSize="@dimen/item_size_14"
-                android:textColor="@color/colorFont"
+                android:textColor="@color/black"
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
                 android:inputType="number"
-                android:hint="@string/nim"/>
+                android:hint="@string/nim"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/fakultas"
-                android:textColor="@android:color/black"
-                android:layout_margin="@dimen/item_margin_8" />
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
 
-            <Spinner
-                android:id="@+id/spinner_fakultas_register"
+            <EditText
+                android:id="@+id/edit_text_fakultas_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/item_margin_12"
                 android:background="@drawable/bg_rounded_edit_text"
-                android:textSize="@dimen/item_size_12"
-                android:textColor="@color/colorFont"
+                android:textSize="@dimen/item_size_14"
+                android:textColor="@color/black"
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
-                android:hint="@string/fakultas"/>
+                android:editable="false"
+                android:hint="@string/fakultas"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/jurusan"
-                android:textColor="@android:color/black"
-                android:layout_margin="@dimen/item_margin_8"/>
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
 
-            <Spinner
-                android:id="@+id/spinner_jurusan_register"
+            <EditText
+                android:id="@+id/edit_text_jurusan_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/item_margin_12"
                 android:background="@drawable/bg_rounded_edit_text"
-                android:textSize="@dimen/item_size_12"
-                android:textColor="@color/colorFont"
+                android:textSize="@dimen/item_size_14"
+                android:textColor="@color/black"
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
-                android:hint="@string/jurusan"/>
+                android:editable="false"
+                android:hint="@string/jurusan"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/no_hp"
-                android:textColor="@android:color/black"
-                android:layout_margin="@dimen/item_margin_8" />
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <EditText
                 android:id="@+id/edit_text_no_hp_register"
@@ -130,18 +142,20 @@
                 android:padding="@dimen/item_margin_12"
                 android:background="@drawable/bg_rounded_edit_text"
                 android:textSize="@dimen/item_size_14"
-                android:textColor="@color/colorFont"
+                android:textColor="@color/black"
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
                 android:inputType="phone"
-                android:hint="@string/no_hp"/>
+                android:hint="@string/no_hp"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/alamat"
-                android:textColor="@android:color/black"
-                android:layout_margin="@dimen/item_margin_8"/>
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <EditText
                 android:id="@+id/edit_text_alamat_register"
@@ -150,53 +164,45 @@
                 android:padding="@dimen/item_margin_12"
                 android:background="@drawable/bg_rounded_edit_text"
                 android:textSize="@dimen/item_size_14"
-                android:textColor="@color/colorFont"
+                android:textColor="@color/black"
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
-                android:hint="@string/alamat"/>
+                android:hint="@string/alamat"
+                android:inputType="text"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/tanggal_lahir"
-                android:textColor="@android:color/black"
-                android:layout_margin="@dimen/item_margin_8" />
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
 
-            <LinearLayout
+            <EditText
+                android:id="@+id/edit_text_ttl_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/btn_set_calendar"
-                    android:layout_width="@dimen/item_margin_56"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_date_range_black"/>
-
-                <EditText
-                    android:id="@+id/edit_text_ttl_register"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/item_margin_12"
-                    android:background="@drawable/bg_rounded_edit_text"
-                    android:textSize="@dimen/item_size_14"
-                    android:textColor="@color/colorFont"
-                    android:textColorHint="@color/colorDimGray"
-                    android:textAlignment="center"
-                    android:hint="@string/tanggal_lahir"
-                    android:editable="false"/>
-
-            </LinearLayout>
+                android:padding="@dimen/item_margin_12"
+                android:background="@drawable/bg_rounded_edit_text"
+                android:textSize="@dimen/item_size_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorDimGray"
+                android:textAlignment="center"
+                android:hint="@string/tanggal_lahir"
+                android:editable="false"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorFont"
                 android:layout_marginTop="@dimen/item_margin_56"
                 android:layout_marginLeft="@dimen/item_margin_8"
                 android:layout_marginStart="@dimen/item_margin_8"
-                android:layout_marginBottom="@dimen/item_margin_8" />
+                android:layout_marginBottom="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <EditText
                 android:id="@+id/edit_text_email_register"
@@ -205,21 +211,23 @@
                 android:padding="@dimen/item_margin_12"
                 android:background="@drawable/bg_rounded_edit_text"
                 android:textSize="@dimen/item_size_14"
-                android:textColor="@color/colorFont"
+                android:textColor="@color/black"
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
                 android:inputType="textEmailAddress"
-                android:hint="@string/email"/>
+                android:hint="@string/email"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/password"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorFont"
                 android:layout_marginTop="@dimen/item_margin_16"
                 android:layout_marginLeft="@dimen/item_margin_8"
                 android:layout_marginStart="@dimen/item_margin_8"
-                android:layout_marginBottom="@dimen/item_margin_8" />
+                android:layout_marginBottom="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <EditText
                 android:id="@+id/edit_text_password_register"
@@ -228,21 +236,23 @@
                 android:padding="@dimen/item_margin_12"
                 android:background="@drawable/bg_rounded_edit_text"
                 android:textSize="@dimen/item_size_14"
-                android:textColor="@color/colorFont"
+                android:textColor="@color/black"
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
                 android:inputType="textPassword"
-                android:hint="@string/password"/>
+                android:hint="@string/password"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/konfirmasi_password"
-                android:textColor="@android:color/black"
+                android:textColor="@color/colorFont"
                 android:layout_marginTop="@dimen/item_margin_16"
                 android:layout_marginLeft="@dimen/item_margin_8"
                 android:layout_marginStart="@dimen/item_margin_8"
-                android:layout_marginBottom="@dimen/item_margin_8" />
+                android:layout_marginBottom="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <EditText
                 android:id="@+id/edit_text_konfirmasi_password_register"
@@ -251,11 +261,12 @@
                 android:padding="@dimen/item_margin_12"
                 android:background="@drawable/bg_rounded_edit_text"
                 android:textSize="@dimen/item_size_14"
-                android:textColor="@color/colorFont"
+                android:textColor="@color/black"
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
                 android:inputType="textPassword"
-                android:hint="@string/konfirmasi_password"/>
+                android:hint="@string/konfirmasi_password"
+                app:fontFamily="@font/coolvetica_rg"/>
 
             <Button
                 android:id="@+id/btn_daftar_register"
@@ -266,11 +277,12 @@
                 android:layout_gravity="bottom"
                 android:gravity="center"
                 android:layout_weight="1"
-                android:background="@drawable/bg_rounded_white"
+                android:background="@drawable/bg_rounded_green"
                 android:text="@string/daftar"
                 android:textSize="@dimen/item_size_14"
                 android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"/>
+                android:textColor="@color/white"
+                app:fontFamily="@font/coolvetica_rg"/>
 
         </LinearLayout>
     </LinearLayout>

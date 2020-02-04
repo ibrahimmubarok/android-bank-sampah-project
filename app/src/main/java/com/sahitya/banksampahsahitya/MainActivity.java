@@ -8,11 +8,14 @@ import android.os.Bundle;;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.sahitya.banksampahsahitya.model.VerifikasiModel;
 import com.sahitya.banksampahsahitya.ui.InfoSampahFragment;
 import com.sahitya.banksampahsahitya.ui.LaporanFragment;
 import com.sahitya.banksampahsahitya.ui.PeringkatFragment;
 import com.sahitya.banksampahsahitya.ui.ProfileFragment;
 import com.sahitya.banksampahsahitya.ui.TabunganFragment;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public static String namaNasabah;
     public static String ID_PROFILE = "id_profile";
     public static String NAMA_NASABAH = "nama_nasabah";
+    public static ArrayList<VerifikasiModel> accountList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

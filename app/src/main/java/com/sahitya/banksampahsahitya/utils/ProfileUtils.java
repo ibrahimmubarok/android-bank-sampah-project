@@ -1,6 +1,5 @@
 package com.sahitya.banksampahsahitya.utils;
 
-import android.app.ProgressDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -11,7 +10,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.sahitya.banksampahsahitya.MainActivity;
 import com.sahitya.banksampahsahitya.model.ProfileUserModel;
 import com.sahitya.banksampahsahitya.rest.client.ApiClient;
 import com.sahitya.banksampahsahitya.rest.service.ProfileService;

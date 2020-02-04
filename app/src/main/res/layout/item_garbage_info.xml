@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/nomor"
         android:textColor="@android:color/black"
+        android:fontFamily="@font/coolvetica_rg"
         android:textSize="@dimen/item_size_14"/>
 
     <TextView
@@ -23,7 +24,8 @@
         android:maxLines="2"
         android:text="@string/jenis"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/item_size_14" />
+        android:textSize="@dimen/item_size_14"
+        android:fontFamily="@font/coolvetica_rg"/>
 
     <TextView
         android:id="@+id/tv_harga_kilo_sampah"
@@ -34,6 +36,7 @@
         android:text="@string/harga_kg"
         android:maxLines="2"
         android:textColor="@android:color/black"
-        android:textSize="@dimen/item_size_14"/>
+        android:textSize="@dimen/item_size_14"
+        android:fontFamily="@font/coolvetica_rg"/>
 
 </LinearLayout>

@@ -1,16 +1,278 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
     tools:context=".presentation.membership.editprofile.EditProfileActivity">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Edit Profile"
-        android:gravity="center"/>
+        android:layout_height="wrap_content">
 
-</LinearLayout>
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/colorProfile"
+                android:textAlignment="center"
+                app:titleTextColor="@color/black"
+                app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/item_margin_60"
+                    android:layout_marginEnd="@dimen/item_margin_60"
+                    app:fontFamily="@font/coolvetica_rg"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/item_size_22"
+                    android:text="@string/edit_profile"
+                    android:gravity="center"/>
+
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_edit_profile"
+            android:layout_width="@dimen/item_margin_125"
+            android:layout_height="@dimen/item_margin_125"
+            android:layout_below="@id/appbar"
+            android:layout_marginTop="@dimen/item_margin_32"
+            android:layout_marginBottom="@dimen/item_margin_16"
+            android:layout_centerHorizontal="true"
+            app:civ_border_color="@color/colorBackgroundGreen"
+            app:civ_border_width="@dimen/item_margin_4"
+            android:src="@drawable/ic_person_black_24dp"/>
+
+        <TextView
+            android:id="@+id/tv_ubah_foto_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ubah_foto_profile"
+            android:textColor="@color/colorPrimaryDark"
+            android:layout_marginLeft="@dimen/item_margin_8"
+            android:layout_marginStart="@dimen/item_margin_8"
+            app:fontFamily="@font/coolvetica_rg"
+            android:layout_below="@id/img_edit_profile"
+            android:layout_centerHorizontal="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_margin_16"
+            android:layout_marginLeft="@dimen/item_margin_32"
+            android:layout_marginRight="@dimen/item_margin_32"
+            android:layout_marginBottom="@dimen/item_margin_16"
+            android:layout_below="@id/tv_ubah_foto_profile"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nama"
+                android:textColor="@color/colorFont"
+                android:layout_marginTop="@dimen/item_margin_16"
+                android:layout_marginLeft="@dimen/item_margin_8"
+                android:layout_marginStart="@dimen/item_margin_8"
+                android:layout_marginBottom="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <EditText
+                android:id="@+id/edit_text_name_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/item_margin_12"
+                android:background="@drawable/bg_rounded_edit_text"
+                android:textSize="@dimen/item_size_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorDimGray"
+                android:textAlignment="center"
+                android:hint="@string/nama"
+                android:inputType="text"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nim"
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <EditText
+                android:id="@+id/edit_text_nim_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/item_margin_12"
+                android:background="@drawable/bg_rounded_edit_text"
+                android:textSize="@dimen/item_size_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorDimGray"
+                android:textAlignment="center"
+                android:inputType="number"
+                android:hint="@string/nim"
+                app:fontFamily="@font/coolvetica_rg"
+                android:editable="false"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/fakultas"
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <EditText
+                android:id="@+id/edit_text_fakultas_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/item_margin_12"
+                android:background="@drawable/bg_rounded_edit_text"
+                android:textSize="@dimen/item_size_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorDimGray"
+                android:textAlignment="center"
+                android:hint="@string/fakultas"
+                app:fontFamily="@font/coolvetica_rg"
+                android:editable="false"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/jurusan"
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <EditText
+                android:id="@+id/edit_text_jurusan_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/item_margin_12"
+                android:background="@drawable/bg_rounded_edit_text"
+                android:textSize="@dimen/item_size_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorDimGray"
+                android:textAlignment="center"
+                android:hint="@string/jurusan"
+                app:fontFamily="@font/coolvetica_rg"
+                android:editable="false"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no_hp"
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <EditText
+                android:id="@+id/edit_text_no_hp_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/item_margin_12"
+                android:background="@drawable/bg_rounded_edit_text"
+                android:textSize="@dimen/item_size_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorDimGray"
+                android:textAlignment="center"
+                android:inputType="phone"
+                android:hint="@string/no_hp"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/alamat"
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <EditText
+                android:id="@+id/edit_text_alamat_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/item_margin_12"
+                android:background="@drawable/bg_rounded_edit_text"
+                android:textSize="@dimen/item_size_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorDimGray"
+                android:textAlignment="center"
+                android:hint="@string/alamat"
+                android:inputType="text"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/tanggal_lahir"
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <EditText
+                android:id="@+id/edit_text_ttl_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/item_margin_12"
+                android:background="@drawable/bg_rounded_edit_text"
+                android:textSize="@dimen/item_size_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorDimGray"
+                android:textAlignment="center"
+                android:hint="@string/tanggal_lahir"
+                android:editable="false"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/email"
+                android:textColor="@color/colorFont"
+                android:layout_margin="@dimen/item_margin_8"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <EditText
+                android:id="@+id/edit_text_email_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/item_margin_12"
+                android:background="@drawable/bg_rounded_edit_text"
+                android:textSize="@dimen/item_size_14"
+                android:textColor="@color/black"
+                android:textColorHint="@color/colorDimGray"
+                android:textAlignment="center"
+                android:inputType="textEmailAddress"
+                android:hint="@string/email"
+                app:fontFamily="@font/coolvetica_rg"
+                android:editable="false"/>
+
+            <Button
+                android:id="@+id/btn_simpan_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/item_margin_56"
+                android:layout_marginBottom="@dimen/item_margin_16"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/bg_rounded_green"
+                android:text="@string/simpan"
+                android:textSize="@dimen/item_size_14"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

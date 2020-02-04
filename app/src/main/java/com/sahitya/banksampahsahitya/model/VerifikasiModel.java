@@ -45,6 +45,20 @@ public class VerifikasiModel implements Parcelable {
     public VerifikasiModel(){
     }
 
+    public VerifikasiModel(int id, String kodeVerifikasi, String name, String email, String nim, String fakultas, String jurusan, String hp, String alamat, String ttl, String foto) {
+        this.id = id;
+        this.kodeVerifikasi = kodeVerifikasi;
+        this.name = name;
+        this.email = email;
+        this.nim = nim;
+        this.fakultas = fakultas;
+        this.jurusan = jurusan;
+        this.hp = hp;
+        this.alamat = alamat;
+        this.ttl = ttl;
+        this.foto = foto;
+    }
+
     protected VerifikasiModel(Parcel in) {
         id = in.readInt();
         kodeVerifikasi = in.readString();

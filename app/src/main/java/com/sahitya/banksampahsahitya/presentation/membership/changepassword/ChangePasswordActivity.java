@@ -55,11 +55,9 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null){
-            getSupportActionBar().setTitle(R.string.ganti_password);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_button_back_black);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.black), PorterDuff.Mode.SRC_ATOP);
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
 
         btnSave.setOnClickListener(this);

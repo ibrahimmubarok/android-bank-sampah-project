@@ -8,5 +8,5 @@
         android:angle="270" />
 
     <corners
-        android:radius="8dp"/>
+        android:radius="@dimen/item_margin_16"/>
 </shape>

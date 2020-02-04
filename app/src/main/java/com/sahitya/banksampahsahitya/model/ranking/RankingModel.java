@@ -11,6 +11,11 @@ public class RankingModel {
     @SerializedName("name")
     private String name;
 
+    public RankingModel(double berat, String name) {
+        this.berat = berat;
+        this.name = name;
+    }
+
     public RankingModel(){
     }
 

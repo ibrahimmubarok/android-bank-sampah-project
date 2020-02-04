@@ -22,7 +22,7 @@
     <string name="riwayat_transaksi">Riwayat Transaksi</string>
     <string name="laporan_tabungan">Laporan Tabungan</string>
     <string name="label_week">MINGGU 1</string>
-    <string name="label_weight_small">Berat : </string>
+    <string name="label_weight_small">Berat : 0 Kg</string>
     <string name="label_value_weight">16</string>
     <string name="total">Total</string>
     <string name="weight">Berat : 16 Kg</string>
@@ -35,7 +35,7 @@
     <string name="password">Password</string>
     <string name="masuk">Masuk</string>
     <string name="belum_memiliki_akun">Belum Memiliki Akun?</string>
-    <string name="sign_up"><u>Sign Up</u></string>
+    <string name="sign_up"><u>Daftar</u></string>
     <string name="forgot_password"><u>Lupa Kata Sandi?</u></string>
     <string name="label_instructions">Masukkan alamat email yang anda gunakan ketika anda bergabung dan kami akan mengirimkan anda instruksi untuk mereset kata sandi anda</string>
     <string name="email_address">Email Address</string>
@@ -51,7 +51,7 @@
     <string name="bank_sampah_sahitya">Bank Sampah Sahitya</string>
     <string name="daftar">Daftar</string>
     <string name="label_ranking_mingguan">Ranking Mingguan</string>
-    <string name="label_per_minggu">Minggu Ke- Bulan Tahun</string>
+    <string name="label_per_minggu">Periode ke-1</string>
     <string name="random_winner">Random Winner</string>
     <string name="nama_random_winner">Nama</string>
     <string name="null_value">0</string>
@@ -73,34 +73,41 @@
     <string name="simpan">Simpan</string>
     <string name="ganti_password">Ganti Password</string>
     <string name="pendapatan_saat_ini">Pendapatan Saat Ini</string>
-    <string name="rp_0">Rp. 0</string>
+    <string name="rp_0">Rp 0</string>
     <string name="riwayat_pencairan">Riwayat Pencairan</string>
     <string name="_00_00_01_jan_2020">00:00 - 01 Jan 2020</string>
     <string name="pencairan_kosong">Anda belum pernah melakukan pencairan</string>
-
+    <string name="app_info">App Info</string>
+    <string name="f_a_q">F.A.Q</string>
+    <string name="kontak_kami">Kontak Kami</string>
+    <string name="bantuan">Bantuan</string>
+    <string name="versi_01_00">Versi 01.00</string>
+    <string name="label_copyright">Copyright 2019 \nFakultas Sains Dan Teknologi\n UIN Syarif Hidayatullah Jakarta</string>
+    <string name="belum_pernah_melakukan_transaksi">Belum pernah melakukan transaksi</string>
+    <string name="bulan_namabulan_tahun">Bulan Namabulan Tahun</string>
+    <string name="toolbar_title">Toolbar Title</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="ubah_foto_profile">Ubah Foto Profile</string>
+    <string name="ranking_belum_tersedia">Ranking Belum Tersedia!</string>
+    <string name="label_ajakan_ranking">Maaf saat ini ranking belum tersedia , Ayo tingkatkan terus tabungan kamu!</string>
+    <string name="nama_sampah">Nama Sampah</string>
 
     <string-array name="fakultas">
-        <item>Pilih Fakultas</item>
-        <item>Ilmu Tarbiyah Dan Keguruan</item>
-        <item>Adab Dan Humaniora</item>
+        <item>Ilmu Tarbiyah dan Keguruan</item>
+        <item>Adab dan Humaniora</item>
         <item>Ushuluddin</item>
-        <item>Syariah Dan Hukum</item>
-        <item>Dakwah Dan Ilmu Komunikasi</item>
+        <item>Syariah dan Hukum</item>
+        <item>Dakwah dan Ilmu Komunikasi</item>
         <item>Dirasat Islamiyah</item>
         <item>Psikologi</item>
-        <item>Ekonomi Dan Bisnis</item>
-        <item>Sains Dan Teknologi</item>
+        <item>Ekonomi dan Bisnis</item>
+        <item>Sains dan Teknologi</item>
         <item>Ilmu Kesehatan</item>
-        <item>Ilmu Sosial Dan Ilmu Politik</item>
+        <item>Ilmu Sosial dan Ilmu Politik</item>
         <item>Kedokteran</item>
     </string-array>
 
-    <string-array name="jurusan_no_selected">
-        <item>Pilih Jurusan</item>
-    </string-array>
-
     <string-array name="jurusan_fitk">
-        <item>Pilih Jurusan</item>
         <item>Pendidikan Agama Islam</item>
         <item>Pendidikan Bahasa Arab</item>
         <item>Pendidikan Bahasa Inggris</item>
@@ -116,7 +123,6 @@
     </string-array>
 
     <string-array name="jurusan_adab_humaniora">
-        <item>Pilih Jurusan</item>
         <item>Bahasa dan Sastra Arab</item>
         <item>Sejarah dan Kebudayaan Islam</item>
         <item>Tarjamah</item>
@@ -125,7 +131,6 @@
     </string-array>
 
     <string-array name="jurusan_ushuluddin">
-        <item>Pilih Jurusan</item>
         <item>Studi Agama Agama</item>
         <item>Ilmu Alquran dan Tafsir</item>
         <item>Ilmu Hadist</item>
@@ -134,7 +139,6 @@
     </string-array>
 
     <string-array name="jurusan_syariah_hukum">
-        <item>Pilih Jurusan</item>
         <item>Hukum Keluarga (Ahwal Syakhsiyyah)</item>
         <item>Perbandingan Mazhab</item>
         <item>Hukum Tata Negara (Siyasah)</item>
@@ -144,7 +148,6 @@
     </string-array>
 
     <string-array name="jurusan_dakwah_komunikasi">
-        <item>Pilih Jurusan</item>
         <item>Komunikasi dan Penyiaran Islam</item>
         <item>Bimbingan dan Penyuluhan Islam</item>
         <item>Manajemen Dakwah</item>
@@ -154,17 +157,14 @@
     </string-array>
 
     <string-array name="jurusan_dirasat">
-        <item>Pilih Jurusan</item>
         <item>Dirasat Islamiyah</item>
     </string-array>
 
     <string-array name="jurusan_psikologi">
-        <item>Pilih Jurusan</item>
         <item>Psikologi</item>
     </string-array>
 
     <string-array name="jurusan_ekonomi">
-        <item>Pilih Jurusan</item>
         <item>Manajemen</item>
         <item>Akuntansi</item>
         <item>Ilmu Ekonomi dan Studi Pembangunan</item>
@@ -173,7 +173,6 @@
     </string-array>
 
     <string-array name="jurusan_sains_teknologi">
-        <item>Pilih Jurusan</item>
         <item>Agribisnis</item>
         <item>Teknik Informatika</item>
         <item>Sistem Informasi</item>
@@ -185,24 +184,20 @@
     </string-array>
 
     <string-array name="jurusan_ilmu_kesehatan">
-        <item>Pilih Jurusan</item>
         <item>Kesehatan Masyarakat</item>
         <item>Farmasi</item>
         <item>Ilmu Keperawatan</item>
         <item>Program Profesi Keperawatan (Ners)</item>
         <item>Program Profesi Farmasi (Apoteker)</item>
-        <item></item>
     </string-array>
 
     <string-array name="jurusan_isip">
-        <item>Pilih Jurusan</item>
         <item>Sosiologi</item>
         <item>Ilmu Politik</item>
         <item>Ilmu Hubungan Internasional</item>
     </string-array>
 
     <string-array name="jurusan_kedokteran">
-        <item>Pilih Jurusan</item>
         <item>Kedokteran dan Pendidikan Dokter</item>
     </string-array>
 </resources>

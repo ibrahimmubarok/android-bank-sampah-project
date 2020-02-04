@@ -38,6 +38,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.sahitya.banksampahsahitya.MainActivity.accountList;
+
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher{
 
     private final String TAG = LoginActivity.class.getSimpleName();
@@ -169,6 +171,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (response.isSuccessful()){
                     Log.d(TAG, response.body().toString());
                     Toast.makeText(LoginActivity.this, "Sukses!", Toast.LENGTH_SHORT).show();
+
+                    String name = response.body().getName();
+                    String email = response.body().getEmail();
+                    String nim = response.body().getNim();
+                    String fakultas = response.body().getFakultas();
+                    String jurusan = response.body().getJurusan();
+                    String hp = response.body().getHp();
+                    String alamat = response.body().getAlamat();
+                    String ttl = response.body().getTtl();
+                    String foto = response.body().getFoto();
+
+                    accountList.add(new VerifikasiModel(id, kode, name, email, nim, fakultas, jurusan, hp, alamat, ttl, foto));
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra(MainActivity.ID_PROFILE, id);

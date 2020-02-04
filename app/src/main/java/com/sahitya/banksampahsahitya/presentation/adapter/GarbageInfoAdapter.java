@@ -49,7 +49,7 @@ public class GarbageInfoAdapter extends RecyclerView.Adapter<GarbageInfoAdapter.
     public void onBindViewHolder(@NonNull GarbageInfoViewHolder holder, int position) {
         holder.tvNomorSampah.setText(String.valueOf(position+1));
         holder.tvNamaSampah.setText(mData.get(position).getNama());
-        holder.tvHargaSampah.setText(convertCurrency(mData.get(position).getHargaPerKilo()));
+        holder.tvHargaSampah.setText("Rp "+convertCurrency(mData.get(position).getHargaPerKilo()));
 
     }
 

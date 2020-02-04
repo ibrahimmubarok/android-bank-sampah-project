@@ -15,6 +15,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sahitya.banksampahsahitya.R;
@@ -37,10 +40,22 @@ public class PeringkatFragment extends Fragment {
 
     @BindView(R.id.rv_ranking)
     RecyclerView rvRanking;
-    @BindView(R.id.tv_nama_random_winner_ranking)
+    @BindView(R.id.tv_name_random_ranking)
     TextView tvNamaRandom;
-    @BindView(R.id.tv_nilai_random_winner_ranking)
+    @BindView(R.id.tv_nilai_random_ranking)
     TextView tvNilaiRandom;
+    @BindView(R.id.tv_periode_ranking)
+    TextView tvPeriode;
+    @BindView(R.id.layout_no_koneksi)
+    FrameLayout noKoneksiLayout;
+    @BindView(R.id.layout_ranking_unavailable)
+    FrameLayout rankingUnavailble;
+    @BindView(R.id.main_layout_peringkat)
+    RelativeLayout relativeLayout;
+    @BindView(R.id.progress_bar_ranking)
+    ProgressBar progressBar;
+    @BindView(R.id.tv_refresh_connection)
+    TextView tvRefresh;
 
     private Unbinder unbinder;
 
@@ -70,6 +85,8 @@ public class PeringkatFragment extends Fragment {
 
         rankingArrayList = new ArrayList<>();
 
+        progressBar.setVisibility(View.VISIBLE);
+
         adapter = new RankingAdapter(getContext(), rankingArrayList);
         adapter.notifyDataSetChanged();
 
@@ -77,15 +94,31 @@ public class PeringkatFragment extends Fragment {
         rvRanking.setLayoutManager(new LinearLayoutManager(getContext()));
         rvRanking.setAdapter(adapter);
 
-        rankingModel.asyncRanking();
+        rankingModel.asyncRanking(progressBar, relativeLayout, noKoneksiLayout);
+
+        tvRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressBar.setVisibility(View.VISIBLE);
+                noKoneksiLayout.setVisibility(View.GONE);
+                rankingModel.asyncRanking(progressBar, relativeLayout, noKoneksiLayout);
+            }
+        });
     }
 
     private Observer<ArrayList<RankingModel>> getRankingData = new Observer<ArrayList<RankingModel>>() {
         @Override
         public void onChanged(ArrayList<RankingModel> rankingModels) {
-            if (rankingModels != null){
+            if (!rankingModels.isEmpty()){
                 adapter.setData(rankingModels);
                 Log.d(TAG, "Ada Data");
+                Log.d(TAG, String.valueOf(rankingModels.size()));
+                progressBar.setVisibility(View.GONE);
+                relativeLayout.setVisibility(View.VISIBLE);
+            }else{
+                progressBar.setVisibility(View.GONE);
+                rankingUnavailble.setVisibility(View.VISIBLE);
+                Log.d("Jancuk", String.valueOf(rankingModels.size()));
             }
         }
     };

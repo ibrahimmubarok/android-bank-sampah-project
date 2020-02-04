@@ -1,6 +1,10 @@
 package com.sahitya.banksampahsahitya.utils;
 
 import android.util.Log;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -23,8 +27,9 @@ public class RankingUtils extends ViewModel {
 
     private MutableLiveData<ArrayList<RankingModel>> mutableLiveDataRanking = new MutableLiveData<>();
     private MutableLiveData<ArrayList<RankingRandomModel>> mutableLiveDataRandom = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<RankingResponseModel>> mutableRankingResponse = new MutableLiveData<>();
 
-    public void asyncRanking(){
+    public void asyncRanking(ProgressBar loading, RelativeLayout linearLayout, FrameLayout frameLayout){
         RankingService rankingService = ApiClient.getClient().create(RankingService.class);
 
         final ArrayList<RankingModel> rankingArrayList = new ArrayList<>();
@@ -33,30 +38,39 @@ public class RankingUtils extends ViewModel {
         call.enqueue(new Callback<RankingResponseModel>() {
             @Override
             public void onResponse(Call<RankingResponseModel> call, Response<RankingResponseModel> response) {
-                ArrayList<RankingModel> rankingList = response.body().getRanking();
+                if (response.isSuccessful()) {
+                    int season = response.body().getSeason();
+                    if (season != 0){
+                        ArrayList<RankingModel> rankingList = response.body().getRanking();
+                        for (RankingModel r : rankingList) {
+                            RankingModel rankingModel = new RankingModel();
 
-                if (!response.isSuccessful()){
-                    return;
+                            rankingModel.setName(r.getName());
+                            Log.d(TAG, r.getName());
+                            rankingModel.setBerat(r.getBerat());
+                            Log.d(TAG, String.valueOf(r.getBerat()));
+
+                            rankingArrayList.add(rankingModel);
+                        }
+                        Log.d(TAG, "Number of ranking : " + rankingArrayList.size());
+
+                        mutableLiveDataRanking.postValue(rankingArrayList);
+
+                        linearLayout.setVisibility(View.VISIBLE);
+                        frameLayout.setVisibility(View.GONE);
+                    }else{
+                        mutableLiveDataRanking.postValue(rankingArrayList);
+                        return;
+                    }
                 }
-
-                for (RankingModel r : rankingList){
-                    RankingModel rankingModel = new RankingModel();
-
-                    rankingModel.setName(r.getName());
-                    Log.d(TAG, r.getName());
-                    rankingModel.setBerat(r.getBerat());
-                    Log.d(TAG, String.valueOf(r.getBerat()));
-
-                    rankingArrayList.add(rankingModel);
-                }
-                Log.d(TAG, "Number of ranking : " + rankingArrayList.size());
-
-                mutableLiveDataRanking.postValue(rankingArrayList);
             }
 
             @Override
             public void onFailure(Call<RankingResponseModel> call, Throwable t) {
-                Log.e(TAG, t.toString());
+                Log.d(TAG, t.toString());
+                linearLayout.setVisibility(View.GONE);
+                frameLayout.setVisibility(View.VISIBLE);
+                loading.setVisibility(View.GONE);
             }
         });
     }

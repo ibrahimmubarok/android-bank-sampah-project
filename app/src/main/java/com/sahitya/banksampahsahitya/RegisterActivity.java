@@ -3,27 +3,25 @@ package com.sahitya.banksampahsahitya;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.sahitya.banksampahsahitya.model.RegistersModel;
 import com.sahitya.banksampahsahitya.rest.service.RegisterApiService;
 import com.sahitya.banksampahsahitya.tools.DatePickerFragment;
+import com.sahitya.banksampahsahitya.tools.SingleChoiceDialogFragment;
 import com.sahitya.banksampahsahitya.utils.RegisterApiUtils;
 
 import java.text.SimpleDateFormat;
@@ -37,7 +35,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, DatePickerFragment.DialogDateListener, AdapterView.OnItemSelectedListener {
+import static com.sahitya.banksampahsahitya.tools.SingleChoiceDialogFragment.FAKULTAS_TAG;
+import static com.sahitya.banksampahsahitya.tools.SingleChoiceDialogFragment.JURUSAN_TAG;
+
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, DatePickerFragment.DialogDateListener, SingleChoiceDialogFragment.SingleChoiceListener {
 
     private final String TAG = RegisterActivity.class.getSimpleName();
     private final static String DATE_PICKER_TAG = "DatePicker";
@@ -46,16 +47,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText editTextName;
     @BindView(R.id.edit_text_nim_register)
     EditText editTextNim;
-    @BindView(R.id.spinner_fakultas_register)
-    Spinner spinnerFakultas;
-    @BindView(R.id.spinner_jurusan_register)
-    Spinner spinnerJurusan;
+    @BindView(R.id.edit_text_fakultas_register)
+    EditText edtFakultas;
+    @BindView(R.id.edit_text_jurusan_register)
+    EditText edtJurusan;
     @BindView(R.id.edit_text_no_hp_register)
     EditText editTextNoHp;
     @BindView(R.id.edit_text_alamat_register)
     EditText editTextAlamat;
-    @BindView(R.id.btn_set_calendar)
-    ImageButton btnCalendar;
     @BindView(R.id.edit_text_ttl_register)
     EditText editTextTtl;
     @BindView(R.id.edit_text_email_register)
@@ -73,8 +72,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private RegisterApiService mRegisterApiService;
     private ProgressDialog loading;
 
-    private String fakultas;
-    private String jurusan;
+    private String[] listFakultas;
+    private String[] listJurusan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,31 +82,23 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         unbinder = ButterKnife.bind(this);
 
-        ArrayAdapter<CharSequence> adapterFakultas = ArrayAdapter.createFromResource(this, R.array.fakultas, android.R.layout.simple_spinner_item);
-        adapterFakultas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerFakultas.setAdapter(adapterFakultas);
-
-        ArrayAdapter<CharSequence> adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_no_selected, android.R.layout.simple_spinner_item);
-        adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerJurusan.setAdapter(adapterJurusan);
-
         mRegisterApiService = RegisterApiUtils.getRegisterApiService();
 
         setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null){
             toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_button_back_white);
             getSupportActionBar().setTitle(R.string.daftar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-            toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
         }
 
-        spinnerFakultas.setOnItemSelectedListener(this);
-        spinnerJurusan.setOnItemSelectedListener(this);
+        listFakultas = getResources().getStringArray(R.array.fakultas);
+
+        edtFakultas.setOnClickListener(this);
+        edtJurusan.setOnClickListener(this);
         btnDaftar.setOnClickListener(this);
-        btnCalendar.setOnClickListener(this);
+        editTextTtl.setOnClickListener(this);
     }
 
     @Override
@@ -121,6 +112,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             String email = editTextEmail.getText().toString().trim();
             String password = editTextPassword.getText().toString().trim();
             String konfirmasiPassword = editTextKonfirmasiPassword.getText().toString().trim();
+            String fakultas = edtFakultas.getText().toString().trim();
+            String jurusan = edtJurusan.getText().toString().trim();
 
             if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(nim) && !fakultas.equals("Pilih Fakultas") && !jurusan.equals("Pilih Jurusan") && !TextUtils.isEmpty(noHp) && !TextUtils.isEmpty(alamat) && !TextUtils.isEmpty(ttl) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(konfirmasiPassword)){
                 if (password.equals(konfirmasiPassword)){
@@ -154,13 +147,26 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     showDialog("Password tidak sama", "Password error");
                 }
             }else if (fakultas.equals("Pilih Fakultas") || jurusan.equals("Pilih Jurusan")){
-                showDialog("Fakultas atau jurusan harus dipilih", "Field Kosong");
+                showDialog("Fakultas atau listJurusan harus dipilih", "Field Kosong");
             }else{
                 showDialog("Field Tidak Boleh Ada Yang Kosong", "Field Kosong");
             }
-        }else if (view.getId() == R.id.btn_set_calendar){
+        }else if (view.getId() == R.id.edit_text_ttl_register){
             DatePickerFragment datePickerFragment = new DatePickerFragment();
             datePickerFragment.show(getSupportFragmentManager(), DATE_PICKER_TAG);
+        }else if (view.getId() == R.id.edit_text_fakultas_register){
+            DialogFragment fakultasDialog = new SingleChoiceDialogFragment(listFakultas);
+            fakultasDialog.setCancelable(true);
+            fakultasDialog.show(getSupportFragmentManager(), FAKULTAS_TAG);
+        }else if (view.getId() == R.id.edit_text_jurusan_register){
+            String jurusan = edtFakultas.getText().toString().trim();
+            if (!TextUtils.isEmpty(jurusan)){
+                DialogFragment jurusanDialog = new SingleChoiceDialogFragment(listJurusan);
+                jurusanDialog.setCancelable(true);
+                jurusanDialog.show(getSupportFragmentManager(), JURUSAN_TAG);
+            }else{
+                Toast.makeText(this, "Pilih fakultas terlebih dahulu", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -183,8 +189,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     finish();
                     Log.d(TAG, "Sukses");
                 }else{
-                    showDialog("Anda Tidak Berhasil Mendaftar", "Register Gagal");
-                    loading.dismiss();
+                    if (response.code() == 500){
+                        showDialog("Email sudah terdaftar harap ganti email yang lain", "Register Gagal");
+                        loading.dismiss();
+                    }else {
+                        showDialog("Anda tidak berhasil mendaftar", "Register Gagal");
+                        loading.dismiss();
+                    }
                 }
             }
 
@@ -193,6 +204,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 loading.dismiss();
                 Log.d(TAG, "Unable to submit post to API");
                 Log.i(TAG, t.toString());
+                showDialog("Periksa kembali koneksi internet anda", "Tidak Ada Koneksi");
             }
         });
     }
@@ -204,80 +216,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
 
         editTextTtl.setText(dateFormat.format(calendar.getTime()));
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-        switch (adapterView.getId()){
-            case R.id.spinner_fakultas_register :
-                fakultas = adapterView.getItemAtPosition(position).toString();
-
-                ArrayAdapter<CharSequence> adapterJurusan;
-
-                if (fakultas.equals("Pilih Fakultas")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_no_selected, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Ilmu Tarbiyah Dan Keguruan")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_fitk, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Adab Dan Humaniora")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_adab_humaniora, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Ushuluddin")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_ushuluddin, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Syariah Dan Hukum")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_syariah_hukum, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Dakwah Dan Ilmu Komunikasi")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_dakwah_komunikasi, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Dirasat Islamiyah")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_dirasat, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Psikologi")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_psikologi, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Ekonomi Dan Bisnis")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_ekonomi, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Sains Dan Teknologi")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_sains_teknologi, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Ilmu Kesehatan")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_ilmu_kesehatan, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Ilmu Sosial Dan Ilmu Politik")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_isip, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }else if (fakultas.equals("Kedokteran")){
-                    adapterJurusan = ArrayAdapter.createFromResource(this, R.array.jurusan_kedokteran, android.R.layout.simple_spinner_item);
-                    adapterJurusan.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    spinnerJurusan.setAdapter(adapterJurusan);
-                }
-                return;
-
-            case R.id.spinner_jurusan_register :
-                jurusan = adapterView.getItemAtPosition(position).toString();
-                return;
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 
     private void showDialog(String message, String title){
@@ -297,5 +235,66 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    @Override
+    public void onPositiveFakultasClicked(String[] list, int position) {
+        edtFakultas.setText(list[position]);
+        edtJurusan.setText("");
+
+        switch (position){
+            case 0 :
+                listJurusan = getResources().getStringArray(R.array.jurusan_fitk);
+                break;
+
+            case 1 :
+                listJurusan = getResources().getStringArray(R.array.jurusan_adab_humaniora);
+                break;
+
+            case 2 :
+                listJurusan = getResources().getStringArray(R.array.jurusan_ushuluddin);
+                break;
+
+            case 3 :
+                listJurusan = getResources().getStringArray(R.array.jurusan_syariah_hukum);
+                break;
+
+            case 4 :
+                listJurusan = getResources().getStringArray(R.array.jurusan_dakwah_komunikasi);
+                break;
+
+            case 5 :
+                listJurusan = getResources().getStringArray(R.array.jurusan_dirasat);
+                break;
+
+            case 6 :
+                listJurusan = getResources().getStringArray(R.array.jurusan_psikologi);
+                break;
+
+            case 7 :
+                listJurusan = getResources().getStringArray(R.array.jurusan_ekonomi);
+                break;
+
+            case 8 :
+                listJurusan = getResources().getStringArray(R.array.jurusan_sains_teknologi);
+                break;
+
+            case 9 :
+                listJurusan = getResources().getStringArray(R.array.jurusan_ilmu_kesehatan);
+                break;
+
+            case 10 :
+                listJurusan = getResources().getStringArray(R.array.jurusan_isip);
+                break;
+
+            case 11 :
+                listJurusan = getResources().getStringArray(R.array.jurusan_kedokteran);
+                break;
+        }
+    }
+
+    @Override
+    public void onPositiveJurusanClicked(String[] list, int position) {
+        edtJurusan.setText(list[position]);
     }
 }

@@ -56,13 +56,15 @@
 
             </LinearLayout>
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_avatar"
                 android:layout_width="112dp"
                 android:layout_height="112dp"
-                android:src="@drawable/ic_avatar"
                 android:layout_marginTop="-10dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:src="@drawable/ic_avatar"
+                app:civ_border_color="@color/colorBackgroundGreen"
+                app:civ_border_width="@dimen/item_margin_4"/>
 
             <TextView
                 android:id="@+id/tv_name"

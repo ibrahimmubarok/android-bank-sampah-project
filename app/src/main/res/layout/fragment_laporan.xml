@@ -3,8 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.LaporanFragment">
 
     <include
@@ -33,14 +31,27 @@
                 android:textAlignment="center"
                 android:textStyle="bold"
                 android:textSize="@dimen/item_size_24"
+                android:fontFamily="@font/coolvetica_rg"
                 android:text="@string/laporan_tabungan" />
 
+            <TextView
+                android:id="@+id/tv_bulan_laporan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/item_margin_4"
+                android:textColor="@android:color/black"
+                android:textAlignment="center"
+                android:textSize="@dimen/item_size_18"
+                android:fontFamily="@font/coolvetica_rg"
+                android:text="@string/bulan_namabulan_tahun" />
+
             <ImageView
-                android:layout_width="@dimen/item_margin_120"
-                android:layout_height="@dimen/item_margin_120"
+                android:layout_width="@dimen/item_margin_128"
+                android:layout_height="@dimen/item_margin_128"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:background="@drawable/ic_account_circle_black_24dp"
+                android:layout_marginBottom="@dimen/item_margin_8"
+                android:src="@drawable/ic_ilus_laporan_tabungan"
                 android:contentDescription="TODO" />
 
             <LinearLayout
@@ -48,109 +59,11 @@
                 android:layout_height="wrap_content">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="285dp"
-                    tools:listitem="@layout/item_laporan_tabungan" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/item_margin_0"
-                android:layout_gravity="bottom"
-                android:gravity="bottom"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <LinearLayout
+                    android:id="@+id/rv_laporan_tabungan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
-                    android:paddingLeft="@dimen/item_margin_2"
-                    android:paddingRight="@dimen/item_margin_2"
-                    android:paddingBottom="@dimen/item_margin_4"
-                    android:background="@drawable/shadow"
-                    android:orientation="vertical">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:divider="@android:color/transparent"
-                        card_view:cardElevation="item_margin_10"
-                        app:cardCornerRadius="@dimen/item_radius_8">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:padding="@dimen/item_margin_8"
-                            android:background="@drawable/shadow_card_view"
-                            android:orientation="vertical">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="@dimen/item_margin_200"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/total"
-                                    android:textStyle="bold"
-                                    android:textColor="@android:color/black"/>
-
-                                <TextView
-                                    android:id="@+id/tv_berat_laporan"
-                                    android:layout_width="@dimen/item_margin_0"
-                                    android:layout_height="wrap_content"
-                                    android:textAlignment="viewEnd"
-                                    android:layout_weight="1"
-                                    android:gravity="end"
-                                    android:textSize="@dimen/item_size_12"
-                                    android:text="@string/weight"
-                                    android:textStyle="bold"
-                                    android:textColor="@android:color/black"/>
-
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingTop="@dimen/item_margin_6"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_currency"
-                                    android:textStyle="bold"
-                                    android:textSize="@dimen/item_size_20"
-                                    android:textColor="@color/colorPrimaryDark"/>
-
-                                <TextView
-                                    android:id="@+id/tv_total_uang"
-                                    android:layout_width="@dimen/item_margin_196"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/item_margin_8"
-                                    android:layout_marginStart="@dimen/item_margin_8"
-                                    android:text="@string/value_amount"
-                                    android:textStyle="bold"
-                                    android:textSize="@dimen/item_size_20"
-                                    android:textColor="@color/colorPrimaryDark"/>
-
-                                <TextView
-                                    android:layout_width="@dimen/item_margin_0"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/label_details"
-                                    android:textAlignment="viewEnd"
-                                    android:layout_weight="1"
-                                    android:textSize="@dimen/item_size_12"
-                                    android:gravity="end" />
-                            </LinearLayout>
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
+                    tools:listitem="@layout/item_laporan_tabungan" />
             </LinearLayout>
-
         </LinearLayout>
 
     </LinearLayout>

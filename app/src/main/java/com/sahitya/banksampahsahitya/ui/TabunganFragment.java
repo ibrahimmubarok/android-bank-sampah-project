@@ -1,6 +1,7 @@
 package com.sahitya.banksampahsahitya.ui;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,6 +25,8 @@ import com.sahitya.banksampahsahitya.MainActivity;
 import com.sahitya.banksampahsahitya.R;
 import com.sahitya.banksampahsahitya.model.tabungan.TabunganModel;
 import com.sahitya.banksampahsahitya.model.tabungan.TabunganRiwayatModel;
+import com.sahitya.banksampahsahitya.presentation.adapter.PreviewDisbursementAdapter;
+import com.sahitya.banksampahsahitya.presentation.membership.disbursement.DisbursementActivity;
 import com.sahitya.banksampahsahitya.utils.TabunganUtils;
 
 import java.text.NumberFormat;
@@ -45,10 +50,6 @@ public class TabunganFragment extends Fragment {
     TextView tvTotalUang;
     @BindView(R.id.tv_amount_of_waste)
     TextView tvTotalSampah;
-    @BindView(R.id.tv_riwayat_transaksi)
-    TextView tvRiwayatTransaksi;
-    @BindView(R.id.tv_created_at_riwayat_transaksi)
-    TextView tvTanggalRiwayat;
     @BindView(R.id.main_layout_tabungan)
     LinearLayout linearLayoutTabungan;
     @BindView(R.id.layout_no_koneksi)
@@ -61,8 +62,17 @@ public class TabunganFragment extends Fragment {
     TextView tvDetail;
     @BindView(R.id.tv_nama_nasabah)
     TextView tvNamaNasabah;
+    @BindView(R.id.view_riwayat_transaksi)
+    LinearLayout viewRiwayatTransaksi;
+    @BindView(R.id.rv_preview_riwayat_transaksi)
+    RecyclerView rvPreview;
+    @BindView(R.id.tv_preview_riwayat_kosong)
+    TextView tvKosong;
 
     private Unbinder unbinder;
+
+    private PreviewDisbursementAdapter adapter;
+    private ArrayList<TabunganRiwayatModel> riwayatList;
 
     public TabunganFragment() {
         // Required empty public constructor
@@ -88,11 +98,20 @@ public class TabunganFragment extends Fragment {
         tabunganUtils.getLiveDataRiwayat().observe(this, getRiwayatTabunganUser);
         tabunganUtils.getMutableLiveDataTabungan().observe(this, getTabunganUser);
 
+        riwayatList = new ArrayList<>();
+
         progressBar.setVisibility(View.VISIBLE);
 
         tvNamaNasabah.setText(" "+MainActivity.namaNasabah);
 
-        tabunganUtils.asyncTabungan(4, progressBar, linearLayoutTabungan, noKoneksiLayout);
+        adapter = new PreviewDisbursementAdapter(getContext(), riwayatList);
+        adapter.notifyDataSetChanged();
+
+        rvPreview.setHasFixedSize(true);
+        rvPreview.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvPreview.setAdapter(adapter);
+
+        tabunganUtils.asyncTabungan(MainActivity.idUser, progressBar, linearLayoutTabungan, noKoneksiLayout);
 
         tvRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,19 +121,47 @@ public class TabunganFragment extends Fragment {
                 tabunganUtils.asyncTabungan(MainActivity.idUser, progressBar, linearLayoutTabungan, noKoneksiLayout);
             }
         });
+
+        viewRiwayatTransaksi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DisbursementActivity.start(getContext());
+            }
+        });
     }
 
     private Observer<ArrayList<TabunganRiwayatModel>> getRiwayatTabunganUser = new Observer<ArrayList<TabunganRiwayatModel>>() {
         @Override
         public void onChanged(ArrayList<TabunganRiwayatModel> riwayat) {
             if (!riwayat.isEmpty()){
-                double riwayatSaldo = riwayat.get(0).getPenarikan();
-                tvRiwayatTransaksi.setText(getSaldoNumberFormat(riwayatSaldo));
-                tvTanggalRiwayat.setText(riwayat.get(0).getCreatedAt());
+
+                ArrayList<TabunganRiwayatModel> tempList = new ArrayList<>();
+
+                if (riwayat.size() > 3){
+                    int length = riwayat.size();
+                    int k = 1;
+                    for (int i=0; i<length; i++){
+                        int j=0;
+                        if (riwayat.size() > 3) {
+                            riwayat.remove(j);
+                        }else{
+                            tempList.add(riwayat.get(riwayat.size()-k));
+                            k++;
+                        }
+                    }
+                    Log.d("TEMPE", String.valueOf(tempList.size()));
+                    adapter.setData(tempList);
+                }else {
+                    adapter.setData(riwayat);
+                }
                 Log.d("CreatedAt", riwayat.get(0).getCreatedAt());
                 progressBar.setVisibility(View.GONE);
+                tvKosong.setVisibility(View.GONE);
+                rvPreview.setVisibility(View.VISIBLE);
             }else{
                 progressBar.setVisibility(View.GONE);
+                tvKosong.setVisibility(View.VISIBLE);
+                rvPreview.setVisibility(View.GONE);
             }
         }
     };
