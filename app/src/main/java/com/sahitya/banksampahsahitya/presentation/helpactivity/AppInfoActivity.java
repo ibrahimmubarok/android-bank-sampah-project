@@ -19,8 +19,6 @@ public class AppInfoActivity extends AppCompatActivity {
     @BindView(R.id.img_back_arrow_app_info)
     ImageView imgBack;
 
-    private Unbinder unbinder;
-
     public static void start(Context context) {
         Intent starter = new Intent(context, AppInfoActivity.class);
         context.startActivity(starter);
@@ -31,7 +29,7 @@ public class AppInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_app_info);
 
-        unbinder = ButterKnife.bind(this);
+        ButterKnife.bind(this);
 
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override

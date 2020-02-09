@@ -21,5 +21,9 @@
         <item name="android:fontFamily" tools:ignore="NewApi">@font/coolvetica_rg</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_button_back_black</item>
     </style>
+    
+    <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
+        <item name="fontFamily">@font/coolvetica_rg</item>
+    </style>
 
 </resources>

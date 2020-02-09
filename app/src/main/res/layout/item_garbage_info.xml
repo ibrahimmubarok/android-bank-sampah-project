@@ -1,42 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
-    android:layout_margin="@dimen/item_margin_4"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/item_margin_4">
 
-    <TextView
-        android:id="@+id/tv_nomor_sampah"
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/nomor"
-        android:textColor="@android:color/black"
-        android:fontFamily="@font/coolvetica_rg"
-        android:textSize="@dimen/item_size_14"/>
-
-    <TextView
-        android:id="@+id/tv_nama_sampah"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_margin_8"
         android:layout_marginLeft="@dimen/item_margin_8"
-        android:layout_marginStart="@dimen/item_margin_8"
-        android:maxLines="2"
-        android:text="@string/jenis"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/item_size_14"
-        android:fontFamily="@font/coolvetica_rg"/>
+        android:layout_marginRight="@dimen/item_margin_8">
 
-    <TextView
-        android:id="@+id/tv_harga_kilo_sampah"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/item_margin_8"
-        android:layout_marginStart="@dimen/item_margin_8"
-        android:text="@string/harga_kg"
-        android:maxLines="2"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/item_size_14"
-        android:fontFamily="@font/coolvetica_rg"/>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <TextView
+                android:id="@+id/tv_nomor_sampah"
+                android:layout_width="@dimen/item_margin_32"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/item_margin_22"
+                android:layout_marginRight="@dimen/item_margin_22"
+                android:text="@string/nomor"
+                android:textColor="@android:color/black"
+                app:fontFamily="@font/coolvetica_rg"
+                android:gravity="center"
+                android:textSize="@dimen/item_size_14"/>
+
+            <TextView
+                android:id="@+id/tv_nama_sampah"
+                android:layout_width="@dimen/item_margin_135"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/item_margin_12"
+                android:layout_marginStart="@dimen/item_margin_12"
+                android:maxLines="2"
+                android:text="@string/jenis"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/item_size_14"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+            <TextView
+                android:id="@+id/tv_harga_kilo_sampah"
+                android:layout_width="@dimen/item_margin_100"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/item_margin_8"
+                android:layout_marginStart="@dimen/item_margin_8"
+                android:text="@string/harga_kg"
+                android:maxLines="2"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/item_size_14"
+                android:gravity="center"
+                app:fontFamily="@font/coolvetica_rg"/>
+
+        </TableRow>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/item_margin_1"
+            android:layout_marginTop="@dimen/item_margin_16"
+            android:layout_marginLeft="@dimen/item_margin_16"
+            android:layout_marginRight="@dimen/item_margin_16"
+            android:background="@color/colorBorder" />
+    </TableLayout>
 </LinearLayout>

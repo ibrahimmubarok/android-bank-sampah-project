@@ -23,4 +23,8 @@
     <color name="colorShadowRankingOne">#E3B329</color>
     <color name="colorShadowRankingTwo">#A4A4A4</color>
     <color name="colorShadowRankingThree">#D0903F</color>
+    <color name="colorStrokeGreenFalse">#B7D185</color>
+    <color name="colorGrey">#F1F1F1</color>
+    <color name="colorDeepGreen">#D9E2C5</color>
+    <color name="colorClicked">#ADC491</color>
 </resources>

@@ -62,12 +62,10 @@ public class HelpAdapter extends RecyclerView.Adapter<HelpAdapter.HelpViewHolder
         @BindView(R.id.container_help)
         LinearLayout container;
 
-        private Unbinder unbinder;
-
         public HelpViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            unbinder = ButterKnife.bind(this, itemView);
+            ButterKnife.bind(this, itemView);
 
             container.setOnClickListener(new View.OnClickListener() {
                 @Override

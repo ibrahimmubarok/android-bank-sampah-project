@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
-                    case R.id.navigation_savings :
+                    case R.id.navigation_home:
                         loadFragment(new TabunganFragment());
                         return true;
 

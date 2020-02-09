@@ -79,7 +79,6 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
-                android:inputType="number"
                 android:hint="@string/nim"
                 app:fontFamily="@font/coolvetica_rg"/>
 
@@ -168,7 +167,6 @@
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
                 android:hint="@string/alamat"
-                android:inputType="text"
                 app:fontFamily="@font/coolvetica_rg"/>
 
             <TextView
@@ -282,6 +280,7 @@
                 android:textSize="@dimen/item_size_14"
                 android:textStyle="bold"
                 android:textColor="@color/white"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:fontFamily="@font/coolvetica_rg"/>
 
         </LinearLayout>

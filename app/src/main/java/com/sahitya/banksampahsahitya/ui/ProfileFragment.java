@@ -25,11 +25,14 @@ import com.sahitya.banksampahsahitya.presentation.membership.changepassword.Chan
 import com.sahitya.banksampahsahitya.presentation.membership.editprofile.EditProfileActivity;
 import com.sahitya.banksampahsahitya.presentation.membership.help.HelpActivity;
 import com.sahitya.banksampahsahitya.presentation.membership.login.LoginActivity;
+import com.sahitya.banksampahsahitya.ui.customdialog.CustomDialogThree;
+import com.sahitya.banksampahsahitya.ui.customdialog.CustomDialogTwo;
 import com.sahitya.banksampahsahitya.utils.ProfileUtils;
 
 import java.util.ArrayList;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -40,6 +43,7 @@ import butterknife.Unbinder;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.sahitya.banksampahsahitya.MainActivity.accountList;
+import static com.sahitya.banksampahsahitya.ui.customdialog.CustomDialogTwo.isEditProfile;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -109,34 +113,7 @@ public class ProfileFragment extends Fragment {
         containerLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage("Apakah Kamu Yakin Ingin Log Out?");
-                builder.setTitle("Log Out");
-                builder.setCancelable(true);
-
-                builder.setPositiveButton(
-                        "Iya", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                accountList.clear();
-                                Toast.makeText(getContext(), "Logout", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getContext(), LoginActivity.class));
-                                getActivity().finish();
-                            }
-                        }
-                );
-
-                builder.setNegativeButton(
-                        "Tidak", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
-                            }
-                        }
-                );
-
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                showAlert("Apakah kamu yakin ingin keluar?", LoginActivity.class);
             }
         });
     }
@@ -192,4 +169,27 @@ public class ProfileFragment extends Fragment {
             }
         }
     };
+
+    private void showAlert(String head, Class<?> cls){
+        CustomDialogTwo mCustomDialogOne = new CustomDialogTwo(head, cls);
+
+        FragmentManager mFragmentManager = getFragmentManager();
+        mCustomDialogOne.show(mFragmentManager, cls.getSimpleName());
+    }
+
+    private void showAlertNoOption(String head, String body){
+        CustomDialogThree customDialogThree = new CustomDialogThree(head, body);
+
+        FragmentManager mFragmentManager = getFragmentManager();
+        customDialogThree.show(mFragmentManager, CustomDialogThree.class.getSimpleName());
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (isEditProfile){
+            showAlertNoOption(getResources().getString(R.string.data_berhasil_diubah), getResources().getString(R.string.data_berhasil_diubah));
+            isEditProfile = false;
+        }
+    }
 }

@@ -74,15 +74,15 @@ public class HelpActivity extends AppCompatActivity{
             public void onHelpClicked(View view, int position) {
                 switch (position){
                     case 0 :
-                        AppInfoActivity.start(getApplicationContext());
+                        AppInfoActivity.start(HelpActivity.this);
                         break;
 
                     case 1 :
-                        FaqActivity.start(getApplicationContext());
+                        FaqActivity.start(HelpActivity.this);
                         break;
 
                     case 2 :
-                        KontakActivity.start(getApplicationContext());
+                        KontakActivity.start(HelpActivity.this);
                         break;
                 }
             }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@drawable/bg_rounded_dialog"
+    android:paddingTop="@dimen/item_margin_16"
+    android:paddingLeft="@dimen/item_margin_32"
+    android:paddingRight="@dimen/item_margin_32"
+    android:paddingBottom="@dimen/item_margin_16"
+    tools:context=".ui.customdialog.CustomDialogOne">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/item_margin_4"
+        android:src="@drawable/ic_icon_alert"/>
+
+    <TextView
+        android:id="@+id/tv_head_dialog_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/coba_lagi_ya"
+        android:textSize="@dimen/item_size_24"
+        android:textColor="@color/black"
+        app:fontFamily="@font/coolvetica_rg"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/item_margin_16"
+        android:padding="@dimen/item_margin_4"/>
+
+    <TextView
+        android:id="@+id/tv_body_dialog_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/email_atau_password_yang_kamu_masukkan_belum_tepat"
+        android:textSize="@dimen/item_size_16"
+        android:textColor="@color/colorFont"
+        app:fontFamily="@font/coolvetica_rg"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/item_margin_4"/>
+
+    <TextView
+        android:id="@+id/tv_oke"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/oke"
+        android:textSize="@dimen/item_size_20"
+        android:textColor="@color/colorPrimary"
+        app:fontFamily="@font/coolvetica_rg"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="@dimen/item_margin_16"
+        android:padding="@dimen/item_margin_4"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"/>
+
+</LinearLayout>

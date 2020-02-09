@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_category_item_garbage_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_margin_8"
+        android:layout_marginLeft="@dimen/item_margin_4"
+        android:layout_marginRight="@dimen/item_margin_4"
+        android:layout_marginBottom="@dimen/item_margin_4"
+        android:paddingTop="@dimen/item_margin_8"
+        android:paddingLeft="@dimen/item_margin_16"
+        android:paddingRight="@dimen/item_margin_16"
+        android:paddingBottom="@dimen/item_margin_8"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/item_size_16"
+        android:gravity="center"
+        android:background="@drawable/bg_category_style"
+        app:fontFamily="@font/coolvetica_rg"
+        android:text="@string/kategori"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"/>
+
+</LinearLayout>

@@ -50,4 +50,12 @@
     <dimen name="item_margin_90">90dp</dimen>
     <dimen name="item_margin_125">125dp</dimen>
     <dimen name="item_margin_190">190dp</dimen>
+    <dimen name="pixel_size_width">300dp</dimen>
+    <dimen name="pixel_size_height">150dp</dimen>
+    <dimen name="item_margin_185">185dp</dimen>
+    <dimen name="item_margin_28">28dp</dimen>
+    <dimen name="item_margin_44">44dp</dimen>
+    <dimen name="item_margin_135">135dp</dimen>
+    <dimen name="item_margin_140">140dp</dimen>
+    <dimen name="item_margin_22">22dp</dimen>
 </resources>

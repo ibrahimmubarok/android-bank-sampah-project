@@ -51,6 +51,7 @@
             android:layout_centerHorizontal="true"
             app:civ_border_color="@color/colorBackgroundGreen"
             app:civ_border_width="@dimen/item_margin_4"
+            android:foreground="?android:attr/selectableItemBackground"
             android:src="@drawable/ic_person_black_24dp"/>
 
         <TextView
@@ -63,7 +64,8 @@
             android:layout_marginStart="@dimen/item_margin_8"
             app:fontFamily="@font/coolvetica_rg"
             android:layout_below="@id/img_edit_profile"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:foreground="?android:attr/selectableItemBackground"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -118,7 +120,6 @@
                 android:textColor="@color/black"
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
-                android:inputType="number"
                 android:hint="@string/nim"
                 app:fontFamily="@font/coolvetica_rg"
                 android:editable="false"/>
@@ -208,7 +209,6 @@
                 android:textColorHint="@color/colorDimGray"
                 android:textAlignment="center"
                 android:hint="@string/alamat"
-                android:inputType="text"
                 app:fontFamily="@font/coolvetica_rg"/>
 
             <TextView
@@ -270,6 +270,7 @@
                 android:textSize="@dimen/item_size_14"
                 android:textStyle="bold"
                 android:textColor="@color/white"
+                android:foreground="?android:attr/selectableItemBackground"
                 app:fontFamily="@font/coolvetica_rg"/>
 
         </LinearLayout>

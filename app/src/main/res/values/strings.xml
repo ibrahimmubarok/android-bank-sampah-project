@@ -63,6 +63,7 @@
     <string name="lupa_sandi">Lupa Kata Sandi?</string>
     <string name="connection_lost">Connection Lost</string>
     <string name="label_connection_lost">Ups! Koneksi kamu terputus. Pastikan kamu tersambung ke internet ya…</string>
+    <string name="koneksi_dialog">Pastikan kamu tersambung ke internet ya…</string>
     <string name="refresh">Refresh</string>
     <string name="tanggal">Tidak Ada</string>
     <string name="zero">0</string>
@@ -73,7 +74,7 @@
     <string name="simpan">Simpan</string>
     <string name="ganti_password">Ganti Password</string>
     <string name="pendapatan_saat_ini">Pendapatan Saat Ini</string>
-    <string name="rp_0">Rp 0</string>
+    <string name="rp_0">Rp. 0</string>
     <string name="riwayat_pencairan">Riwayat Pencairan</string>
     <string name="_00_00_01_jan_2020">00:00 - 01 Jan 2020</string>
     <string name="pencairan_kosong">Anda belum pernah melakukan pencairan</string>
@@ -91,6 +92,19 @@
     <string name="ranking_belum_tersedia">Ranking Belum Tersedia!</string>
     <string name="label_ajakan_ranking">Maaf saat ini ranking belum tersedia , Ayo tingkatkan terus tabungan kamu!</string>
     <string name="nama_sampah">Nama Sampah</string>
+    <string name="coba_lagi_ya">Coba lagi, ya!</string>
+    <string name="email_atau_password_yang_kamu_masukkan_belum_tepat">Email atau password yang kamu masukkan belum tepat</string>
+    <string name="oke"><u>Oke</u></string>
+    <string name="apakah_kamu_yakin_ingin_keluar">Apakah kamu yakin ingin keluar?</string>
+    <string name="tidak">Tidak</string>
+    <string name="ya">Ya</string>
+    <string name="data_berhasil_diubah">Data berhasil diubah!</string>
+    <string name="klik_tombol_oke_untuk_melanjutkan">Klik tombol Oke untuk melanjutkan</string>
+    <string name="label_edit_profile_dialog">Apakah data yang diubah sudah benar?</string>
+    <string name="label_home">Home</string>
+    <string name="info">Info</string>
+    <string name="cari_nama_barang">Cari nama barang</string>
+    <string name="kategori">Kategori</string>
 
     <string-array name="fakultas">
         <item>Ilmu Tarbiyah dan Keguruan</item>

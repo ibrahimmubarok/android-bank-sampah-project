@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,20 +13,16 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.sahitya.banksampahsahitya.R;
-import com.sahitya.banksampahsahitya.presentation.membership.disbursement.DisbursementActivity;
 import com.sahitya.banksampahsahitya.tools.DatePickerFragment;
 import com.sahitya.banksampahsahitya.tools.SingleChoiceDialogFragment;
+import com.sahitya.banksampahsahitya.ui.customdialog.CustomDialogTwo;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -158,7 +155,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 break;
 
             case R.id.btn_simpan_edit_profile :
-                Toast.makeText(this, "Simpan", Toast.LENGTH_SHORT).show();
+                showAlert(getResources().getString(R.string.label_edit_profile_dialog), EditProfileActivity.class);
                 break;
         }
     }
@@ -243,5 +240,12 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
                 listJurusan = getResources().getStringArray(R.array.jurusan_kedokteran);
                 break;
         }
+    }
+
+    private void showAlert(String body, Class<?> cls){
+        CustomDialogTwo customDialogTwo = new CustomDialogTwo(body, cls);
+
+        FragmentManager mFragmentManager = getSupportFragmentManager();
+        customDialogTwo.show(mFragmentManager, CustomDialogTwo.class.getSimpleName());
     }
 }

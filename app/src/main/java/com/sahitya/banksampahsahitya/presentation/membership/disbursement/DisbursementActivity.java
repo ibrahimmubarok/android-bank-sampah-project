@@ -126,7 +126,7 @@ public class DisbursementActivity extends AppCompatActivity {
         public void onChanged(ArrayList<TabunganModel> tabunganModel) {
             if (!tabunganModel.isEmpty()){
                 double saldoUser = tabunganModel.get(0).getSaldo();
-                tvPencairan.setText("Rp "+getSaldoNumberFormat(saldoUser));
+                tvPencairan.setText("Rp. "+getSaldoNumberFormat(saldoUser));
                 progressBar.setVisibility(View.GONE);
             }else{
                 progressBar.setVisibility(View.GONE);

@@ -1,6 +1,7 @@
 package com.sahitya.banksampahsahitya.presentation.membership.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -28,6 +29,7 @@ import com.sahitya.banksampahsahitya.model.LoginModel;
 import com.sahitya.banksampahsahitya.model.VerifikasiModel;
 import com.sahitya.banksampahsahitya.rest.service.LoginService;
 import com.sahitya.banksampahsahitya.rest.service.VerificationService;
+import com.sahitya.banksampahsahitya.ui.customdialog.CustomDialogOne;
 import com.sahitya.banksampahsahitya.utils.LoginUtils;
 import com.sahitya.banksampahsahitya.utils.VerificationUtils;
 
@@ -147,7 +149,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             sendAccountVerify(response.body().getId(), response.body().getKodeVerifikasi());
                         }
                     }else{
-                        showDialog("Email atau password salah", "Login Gagal");
+                        showAlert(getResources().getString(R.string.coba_lagi_ya), getResources().getString(R.string.email_atau_password_yang_kamu_masukkan_belum_tepat));
                     }
                 }else{
                     Log.d(TAG, "Gagal");
@@ -157,7 +159,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             public void onFailure(Call<LoginModel> call, Throwable t) {
                 Log.d(TAG, "unable to submit post to API");
                 Log.d(TAG, t.getMessage());
-                showDialog("Periksa kembali koneksi internet anda", "Tidak Ada Koneksi");
+                showAlert(getResources().getString(R.string.connection_lost), getResources().getString(R.string.koneksi_dialog));
                 loading.dismiss();
             }
         });
@@ -224,22 +226,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-    private void showDialog(String message, String title){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(message);
-        builder.setTitle(title);
-        builder.setCancelable(true);
+    private void showAlert(String head, String body){
+        CustomDialogOne mCustomDialogOne = new CustomDialogOne(head, body);
 
-        builder.setPositiveButton(
-                "Iya", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                }
-        );
-
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        FragmentManager mFragmentManager = getSupportFragmentManager();
+        mCustomDialogOne.show(mFragmentManager, CustomDialogOne.class.getSimpleName());
     }
 }

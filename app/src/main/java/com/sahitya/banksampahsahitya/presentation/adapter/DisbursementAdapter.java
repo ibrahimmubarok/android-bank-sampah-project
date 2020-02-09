@@ -43,7 +43,7 @@ public class DisbursementAdapter extends RecyclerView.Adapter<DisbursementAdapte
 
     @Override
     public void onBindViewHolder(@NonNull DisbursementViewHolder holder, int position) {
-        holder.tvUang.setText("Rp "+convertCurrency(riwayatList.get(position).getPenarikan()));
+        holder.tvUang.setText("Rp. "+convertCurrency(riwayatList.get(position).getPenarikan()));
         holder.tvTanggal.setText(riwayatList.get(position).getCreatedAt());
     }
 

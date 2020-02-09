@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.LaporanFragment">
 
     <include
@@ -16,6 +17,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@drawable/background"
+        style="?android:attr/progressBarStyleLarge"
+        android:indeterminateTint="@color/colorPrimaryDark"
         android:visibility="visible">
 
         <LinearLayout
@@ -62,7 +65,8 @@
                     android:id="@+id/rv_laporan_tabungan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/item_laporan_tabungan" />
+                    tools:listitem="@layout/item_laporan_tabungan"
+                    android:overScrollMode="never"/>
             </LinearLayout>
         </LinearLayout>
 
