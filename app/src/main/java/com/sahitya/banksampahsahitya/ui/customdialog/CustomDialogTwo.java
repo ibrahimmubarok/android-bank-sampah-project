@@ -1,6 +1,7 @@
 package com.sahitya.banksampahsahitya.ui.customdialog;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.sahitya.banksampahsahitya.MainActivity;
 import com.sahitya.banksampahsahitya.R;
+import com.sahitya.banksampahsahitya.presentation.membership.SettingsActivity;
 import com.sahitya.banksampahsahitya.presentation.membership.editprofile.EditProfileActivity;
 import com.sahitya.banksampahsahitya.presentation.membership.login.LoginActivity;
 
@@ -44,12 +46,14 @@ public class CustomDialogTwo extends DialogFragment implements View.OnClickListe
     private Unbinder unbinder;
 
     private Class<?> cls;
+    private Context context;
 
     public CustomDialogTwo() {
         // Required empty public constructor
     }
 
-    public CustomDialogTwo(String head, Class<?> cls) {
+    public CustomDialogTwo(Context context, String head, Class<?> cls) {
+        this.context = context;
         this.head = head;
         this.cls = cls;
     }
@@ -80,10 +84,14 @@ public class CustomDialogTwo extends DialogFragment implements View.OnClickListe
             getDialog().dismiss();
         }else if (view.getId() == R.id.tv_ya){
             if (cls.getSimpleName().equals(LoginActivity.class.getSimpleName())) {
-                Toast.makeText(getContext(), "Logout", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getContext(), cls));
+                Toast.makeText(context, getResources().getString(R.string.label_logout), Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(context, cls));
                 getActivity().finish();
                 accountList.clear();
+            }else if (cls.getSimpleName().equals(SettingsActivity.class.getSimpleName())){
+                startActivity(new Intent(context, cls));
+                Toast.makeText(context, getResources().getString(R.string.sukses_password), Toast.LENGTH_SHORT).show();
+                getActivity().finish();
             }else if (cls.getSimpleName().equals(EditProfileActivity.class.getSimpleName())){
                 isEditProfile = true;
                 getActivity().finish();

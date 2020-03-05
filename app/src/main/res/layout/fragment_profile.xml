@@ -13,7 +13,8 @@
         android:layout_gravity="center"
         style="?android:attr/progressBarStyleLarge"
         android:indeterminateTint="@color/colorPrimaryDark"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        tools:ignore="UnusedAttribute" />
 
     <include
         android:id="@+id/layout_no_koneksi"
@@ -26,7 +27,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/white"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,18 +35,26 @@
             android:orientation="vertical"
             android:background="@drawable/backgound_green">
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:padding="@dimen/item_margin_16"
+                android:src="@drawable/ic_logo_bs_white"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="right"
-                android:padding="@dimen/item_margin_16">
+                android:gravity="end"
+                android:padding="@dimen/item_margin_16"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="@dimen/item_margin_56"
                     android:layout_height="wrap_content"
                     android:text="@string/label_logo_sahitya"
-                    app:fontFamily="@font/nova_square"
+                    app:fontFamily="@font/coolvetica_rg"
                     android:textColor="@color/white"
                     android:textSize="@dimen/item_size_14"
                     android:layout_gravity="center"/>
@@ -60,9 +69,9 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_avatar"
-                android:layout_width="112dp"
-                android:layout_height="112dp"
-                android:layout_marginTop="-10dp"
+                android:layout_width="@dimen/item_margin_112"
+                android:layout_height="@dimen/item_margin_112"
+                android:layout_marginTop="@dimen/item_margin_4"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_avatar"
                 app:civ_border_color="@color/colorBackgroundGreen"
@@ -77,7 +86,7 @@
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:layout_marginTop="18dp"
-                app:fontFamily="@font/roboto_bold"
+                app:fontFamily="@font/coolvetica_rg"
                 android:layout_marginBottom="8dp"
                 android:layout_gravity="center"/>
 
@@ -87,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/label_email"
                 android:textColor="@color/white"
-                app:fontFamily="@font/roboto_bold"
+                app:fontFamily="@font/coolvetica_rg"
                 android:layout_gravity="center"/>
 
         </LinearLayout>
@@ -96,36 +105,45 @@
             android:id="@+id/rv_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="30dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="@dimen/item_margin_30"
             android:background="@color/white"
             android:layout_gravity="center"
-            android:overScrollMode="never"/>
+            android:overScrollMode="never"
+            tools:listitem="@layout/item_profile"
+            tools:itemCount="4"/>
 
-        <LinearLayout
-            android:id="@+id/container_logout"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="@drawable/custom_ripple"
-            android:paddingTop="@dimen/item_margin_8"
-            android:paddingBottom="@dimen/item_margin_8">
+            android:layout_height="wrap_content">
 
-            <ImageView
+            <LinearLayout
+                android:id="@+id/container_logout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_logout"/>
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/custom_ripple"
+                android:padding="@dimen/item_margin_8"
+                android:layout_centerInParent="true">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_logout"
-                android:layout_marginLeft="10dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_icon_logout"/>
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_logout"
+                    app:fontFamily="@font/coolvetica_rg"
+                    android:layout_marginStart="@dimen/item_margin_10"/>
 
+            </LinearLayout>
+
+        </RelativeLayout>
     </LinearLayout>
 </FrameLayout>

@@ -13,21 +13,51 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailTabunganActivity"></activity>
-        <activity android:name=".presentation.helpactivity.KontakActivity" />
-        <activity android:name=".presentation.helpactivity.FaqActivity" />
-        <activity android:name=".presentation.helpactivity.AppInfoActivity" />
-        <activity android:name=".presentation.membership.help.HelpActivity" />
-        <activity android:name=".VerificationCodeActivity" />
-        <activity android:name=".RegisterSuccesfullyActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".presentation.membership.SettingsActivity" />
-        <activity android:name=".presentation.membership.changepassword.ChangePasswordActivity" />
-        <activity android:name=".presentation.membership.editprofile.EditProfileActivity" />
-        <activity android:name=".presentation.membership.disbursement.DisbursementActivity" />
-        <activity android:name=".presentation.membership.login.LoginActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".DetailLaporanActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.helpactivity.KontakActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.helpactivity.FaqActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.helpactivity.AppInfoActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.membership.help.HelpActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".VerificationCodeActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterSuccesfullyActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ForgotPasswordActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.membership.SettingsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.membership.changepassword.ChangePasswordActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.membership.editprofile.EditProfileActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.membership.disbursement.DisbursementActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".presentation.membership.login.LoginActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SplashActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +65,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

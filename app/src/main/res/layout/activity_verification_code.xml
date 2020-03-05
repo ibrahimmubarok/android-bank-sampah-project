@@ -111,6 +111,8 @@
                 android:textSize="@dimen/item_size_14"
                 android:textStyle="bold"
                 android:textColor="@color/colorItemBackground"
+                android:foreground="?android:attr/selectableItemBackground"
+                tools:ignore="UnusedAttribute"
                 android:enabled="false"/>
         </LinearLayout>
     </LinearLayout>

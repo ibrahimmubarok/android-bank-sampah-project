@@ -7,95 +7,75 @@
     android:background="@drawable/background_green_yellow"
     tools:context=".RegisterSuccesfullyActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/item_margin_32"
+        android:layout_marginTop="@dimen/item_margin_64"
+        android:layout_marginLeft="@dimen/item_margin_32"
+        android:layout_marginRight="@dimen/item_margin_32"
+        android:layout_marginBottom="@dimen/item_margin_32"
         android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/regist"
+            app:fontFamily="@font/coolvetica_rg"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/item_margin_16"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_32sdp"
+            android:textSize="@dimen/item_size_22"
+            android:layout_gravity="center" />
+
+        <ImageView
+            android:id="@+id/img_view"
+            android:layout_width="@dimen/item_margin_136"
+            android:layout_height="@dimen/item_margin_72"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:src="@drawable/ic_logo_bs_white" />
+
+        <ImageView
+            android:id="@+id/img_view_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/item_margin_32"
-            android:orientation="vertical">
+            android:src="@drawable/ic_check_list_1"
+            android:layout_gravity="center"
+            android:layout_below="@id/text_view"
+            android:layout_marginTop="@dimen/_56sdp"
+            android:layout_marginBottom="@dimen/_8sdp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_view_2"
+            android:text="@string/regist_success"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:maxLines="2"
+            android:textColor="@color/white"
+            android:textSize="@dimen/item_size_26"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_32sdp"
+            app:fontFamily="@font/coolvetica_rg"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/regist"
-                    app:fontFamily="@font/nova_square"
-                    android:textColor="@color/colorItemBackground"
-                    android:layout_marginRight="@dimen/item_margin_56"
-                    android:layout_marginEnd="@dimen/item_margin_56"
-                    android:textSize="@dimen/item_size_22"
-                    android:textStyle="bold"
-                    android:layout_gravity="center" />
+        <Button
+            android:id="@+id/btn_masuk_register_successfully"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/item_margin_8"
+            android:background="@drawable/bg_rounded_white"
+            android:text="@string/masuk"
+            android:textSize="@dimen/item_size_14"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:layout_alignParentBottom="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            tools:ignore="UnusedAttribute" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="@dimen/item_margin_32"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="@dimen/item_margin_70"
-                        android:layout_height="@dimen/item_margin_70"
-                        android:layout_marginRight="@dimen/item_margin_8"
-                        android:layout_marginEnd="@dimen/item_margin_8"
-                        android:text="@string/label_logo_sahitya"
-                        app:fontFamily="@font/nova_square"
-                        android:textColor="@color/colorItemBackground"
-                        android:textSize="@dimen/item_size_18"
-                        android:layout_gravity="end" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="@dimen/item_margin_6"
-                        android:src="@drawable/ic_recycle_sign_white"
-                        android:layout_gravity="center"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_check_list_1"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/item_margin_56"
-                android:layout_marginBottom="@dimen/item_margin_32"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/regist_success"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:maxLines="2"
-                android:textColor="@color/white"
-                android:textSize="@dimen/item_size_24"
-                android:layout_marginBottom="@dimen/item_margin_32"/>
-
-            <Button
-                android:id="@+id/btn_masuk_register_successfully"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginBottom="@dimen/item_margin_8"
-                android:background="@drawable/bg_rounded_white"
-                android:text="@string/masuk"
-                android:textSize="@dimen/item_size_14"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimary"/>
-
-        </LinearLayout>
-    </LinearLayout>
-
+    </RelativeLayout>
 </RelativeLayout>

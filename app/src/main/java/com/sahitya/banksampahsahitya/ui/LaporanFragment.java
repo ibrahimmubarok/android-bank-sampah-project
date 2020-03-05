@@ -83,7 +83,8 @@ public class LaporanFragment extends Fragment {
             public void onLaporanClicked(View view, int position) {
                 switch (position){
                     case 0 :
-                        Toast.makeText(getContext(), "Minggu 1", Toast.LENGTH_SHORT).show();
+                        String minggu = "Minggu 1";
+                        Toast.makeText(getContext(), minggu, Toast.LENGTH_SHORT).show();
                         break;
 
                     case 1 :

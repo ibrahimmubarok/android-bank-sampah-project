@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container_help"
+    android:id="@+id/container_setting"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,10 +13,10 @@
     tools:ignore="UnusedAttribute">
 
     <TextView
-        android:id="@+id/tv_help"
+        android:id="@+id/tv_setting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/kontak_kami"
+        android:text="@string/pengaturan"
         android:textSize="@dimen/item_size_18"
         app:fontFamily="@font/coolvetica_rg"
         android:textColor="@android:color/black"

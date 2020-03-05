@@ -4,11 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import android.content.Intent;
 import android.os.Bundle;;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.sahitya.banksampahsahitya.model.VerifikasiModel;
+import com.sahitya.banksampahsahitya.presentation.membership.SettingsActivity;
 import com.sahitya.banksampahsahitya.ui.InfoSampahFragment;
 import com.sahitya.banksampahsahitya.ui.LaporanFragment;
 import com.sahitya.banksampahsahitya.ui.PeringkatFragment;
@@ -17,7 +22,16 @@ import com.sahitya.banksampahsahitya.ui.TabunganFragment;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 public class MainActivity extends AppCompatActivity {
+
+    @BindView(R.id.bottom_navigation_view)
+    BottomNavigationView navigationView;
+
+    private Unbinder unbinder;
 
     public static int idUser;
     public static String namaNasabah;
@@ -30,13 +44,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        unbinder = ButterKnife.bind(this);
+
         Bundle bundle = getIntent().getExtras();
         idUser = bundle.getInt(ID_PROFILE);
         namaNasabah = bundle.getString(NAMA_NASABAH);
 
         loadFragment(new TabunganFragment());
 
-        BottomNavigationView navigationView = findViewById(R.id.bottom_navigation_view);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -58,7 +73,8 @@ public class MainActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.navigation_profile :
-                        loadFragment(new ProfileFragment());
+                        startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                        finish();
                         return true;
 
                     default:

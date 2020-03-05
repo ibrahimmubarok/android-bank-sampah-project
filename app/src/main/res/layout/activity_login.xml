@@ -82,7 +82,8 @@
             android:textColor="@color/colorItemBackground"
             android:foreground="?android:attr/selectableItemBackground"
             android:enabled="false"
-            app:fontFamily="@font/coolvetica_rg"/>
+            app:fontFamily="@font/coolvetica_rg"
+            tools:ignore="UnusedAttribute" />
 
         <TextView
             android:id="@+id/tv_forgot_password_login_user"
@@ -90,7 +91,7 @@
             android:layout_height="wrap_content"
             android:text="@string/forgot_password"
             android:textColor="@color/colorDimGray"
-            android:layout_marginTop="@dimen/item_margin_16"
+            android:layout_marginTop="@dimen/_14sdp"
             android:gravity="center"
             app:fontFamily="@font/coolvetica_rg"/>
 
@@ -113,13 +114,13 @@
                 android:id="@+id/tv_sign_up_login_user"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/item_margin_2"
                 android:layout_marginStart="@dimen/item_margin_2"
                 android:text="@string/sign_up"
                 android:textColor="@color/black"
                 android:gravity="center"
                 android:foreground="?android:attr/selectableItemBackground"
-                app:fontFamily="@font/coolvetica_rg"/>
+                app:fontFamily="@font/coolvetica_rg"
+                tools:ignore="UnusedAttribute" />
 
         </LinearLayout>
     </LinearLayout>

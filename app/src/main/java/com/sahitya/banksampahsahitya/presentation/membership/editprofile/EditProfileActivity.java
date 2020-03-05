@@ -243,7 +243,7 @@ public class EditProfileActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void showAlert(String body, Class<?> cls){
-        CustomDialogTwo customDialogTwo = new CustomDialogTwo(body, cls);
+        CustomDialogTwo customDialogTwo = new CustomDialogTwo(EditProfileActivity.this, body, cls);
 
         FragmentManager mFragmentManager = getSupportFragmentManager();
         customDialogTwo.show(mFragmentManager, CustomDialogTwo.class.getSimpleName());

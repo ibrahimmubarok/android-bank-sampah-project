@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sahitya.banksampahsahitya.R;
@@ -64,7 +66,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ProfileV
     public class ProfileViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.container_menu_profile)
-        CardView containerMenuProfile;
+        LinearLayout containerMenuProfile;
 
         @BindView(R.id.img_profile)
         ImageView imgProfile;

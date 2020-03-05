@@ -121,10 +121,10 @@ public class ProfileFragment extends Fragment {
     private void setListMenuProfile() {
         ArrayList<ItemProfileModel> itemProfileModelList = new ArrayList<>();
 
-        itemProfileModelList.add(new ItemProfileModel(R.drawable.ic_disbursement, "Bantuan"));
-        itemProfileModelList.add(new ItemProfileModel(R.drawable.ic_edit_profile, "Edit Profile"));
-        itemProfileModelList.add(new ItemProfileModel(R.drawable.ic_change_password, "Ganti Password"));
-        itemProfileModelList.add(new ItemProfileModel(R.drawable.ic_setting, "Pengaturan"));
+        itemProfileModelList.add(new ItemProfileModel(R.drawable.ic_icon_bantuan, getResources().getString(R.string.bantuan)));
+        itemProfileModelList.add(new ItemProfileModel(R.drawable.ic_icon_edit_profile, getResources().getString(R.string.edit_profile)));
+        itemProfileModelList.add(new ItemProfileModel(R.drawable.ic_icon_ganti_password, getResources().getString(R.string.ganti_password)));
+        itemProfileModelList.add(new ItemProfileModel(R.drawable.ic_icon_pengaturan, getResources().getString(R.string.pengaturan)));
 
         ProfileAdapter profileAdapter = new ProfileAdapter(getContext(), itemProfileModelList);
 
@@ -145,9 +145,9 @@ public class ProfileFragment extends Fragment {
                     case 2:
                         ChangePasswordActivity.start(getContext());
                         break;
-                    case 3:
-                        SettingsActivity.start(getContext());
-                        break;
+//                    case 3:
+//                        SettingsActivity.start(getContext());
+//                        break;
                 }
             }
         });
@@ -171,7 +171,7 @@ public class ProfileFragment extends Fragment {
     };
 
     private void showAlert(String head, Class<?> cls){
-        CustomDialogTwo mCustomDialogOne = new CustomDialogTwo(head, cls);
+        CustomDialogTwo mCustomDialogOne = new CustomDialogTwo(getContext(), head, cls);
 
         FragmentManager mFragmentManager = getFragmentManager();
         mCustomDialogOne.show(mFragmentManager, cls.getSimpleName());

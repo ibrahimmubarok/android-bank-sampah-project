@@ -42,7 +42,6 @@
                 android:text="@string/nama"
                 android:textColor="@color/colorFont"
                 android:layout_marginTop="@dimen/item_margin_16"
-                android:layout_marginLeft="@dimen/item_margin_8"
                 android:layout_marginStart="@dimen/item_margin_8"
                 android:layout_marginBottom="@dimen/item_margin_8"
                 app:fontFamily="@font/coolvetica_rg"/>

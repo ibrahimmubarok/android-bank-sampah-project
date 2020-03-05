@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
     tools:context=".ui.InfoSampahFragment">
 
     <ProgressBar
@@ -13,7 +14,8 @@
         android:layout_gravity="center"
         style="?android:attr/progressBarStyleLarge"
         android:indeterminateTint="@color/colorPrimaryDark"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        tools:ignore="UnusedAttribute" />
 
     <include
         android:id="@+id/layout_no_koneksi"
@@ -48,7 +50,6 @@
             android:paddingLeft="@dimen/item_margin_16"
             android:paddingRight="@dimen/item_margin_16"
             android:paddingBottom="@dimen/item_margin_10"
-            android:drawableRight="@drawable/ic_icon_search"
             android:drawableEnd="@drawable/ic_icon_search"
             android:hint="@string/cari_nama_barang"
             android:textSize="@dimen/item_size_16"
@@ -106,33 +107,34 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:layout_width="@dimen/item_margin_44"
+                        android:layout_width="@dimen/_30sdp"
                         android:layout_height="wrap_content"
-                        android:text="@string/nomor"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:layout_marginRight="@dimen/_8sdp"
                         android:fontFamily="@font/coolvetica_rg"
-                        android:layout_marginLeft="@dimen/item_margin_8"
-                        android:layout_marginRight="@dimen/item_margin_8"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="@string/nomor"
                         android:gravity="center"
                         android:textSize="@dimen/item_size_16"/>
 
                     <TextView
-                        android:layout_width="@dimen/item_margin_135"
+                        android:layout_width="@dimen/_100sdp"
                         android:layout_height="wrap_content"
                         android:text="@string/nama_sampah"
                         android:textColor="@color/colorPrimaryDark"
-                        android:layout_marginLeft="@dimen/item_margin_4"
-                        android:layout_marginRight="@dimen/item_margin_4"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:layout_marginEnd="@dimen/_16sdp"
                         app:fontFamily="@font/coolvetica_rg"
                         android:textSize="@dimen/item_size_16"/>
 
                     <TextView
-                        android:layout_width="@dimen/item_margin_100"
+                        android:layout_width="@dimen/_80sdp"
                         android:layout_height="wrap_content"
                         android:text="@string/harga_kg"
                         android:textColor="@color/colorPrimaryDark"
                         app:fontFamily="@font/coolvetica_rg"
                         android:layout_gravity="end"
+                        android:layout_marginStart="@dimen/_3sdp"
                         android:gravity="end"
                         android:textSize="@dimen/item_size_16"/>
 

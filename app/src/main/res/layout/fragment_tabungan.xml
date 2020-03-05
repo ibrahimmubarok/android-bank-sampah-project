@@ -15,7 +15,8 @@
         android:layout_gravity="center"
         style="?android:attr/progressBarStyleLarge"
         android:indeterminateTint="@color/colorPrimaryDark"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        tools:ignore="UnusedAttribute" />
 
     <include
         android:id="@+id/layout_no_koneksi"
@@ -67,7 +68,6 @@
                     android:layout_height="@dimen/item_margin_38"
                     android:paddingTop="@dimen/item_margin_4"
                     android:layout_weight="1"
-                    android:layout_marginLeft="@dimen/item_margin_2"
                     android:layout_marginStart="@dimen/item_margin_2"
                     android:src="@drawable/ic_logo_bss"
                     android:layout_gravity="end" />
@@ -200,7 +200,6 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/item_margin_8"
                                 android:layout_marginStart="@dimen/item_margin_8"
                                 android:text="@string/unit_weight"
                                 android:textSize="@dimen/item_size_24"
@@ -222,8 +221,10 @@
                 android:paddingBottom="@dimen/item_margin_4"
                 android:foreground="?android:attr/selectableItemBackground"
                 android:clickable="true"
+                android:focusable="true"
                 android:background="@drawable/shadow"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                tools:ignore="UnusedAttribute">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
@@ -261,7 +262,6 @@
                                 android:textColor="@color/colorPrimaryDark"
                                 android:fontFamily="@font/coolvetica_rg"
                                 android:textSize="@dimen/item_size_14"
-                                android:layout_marginRight="@dimen/item_margin_8"
                                 android:layout_marginEnd="@dimen/item_margin_8"
                                 android:visibility="gone"/>
 
@@ -281,6 +281,7 @@
                                 android:layout_weight="1"
                                 android:textSize="@dimen/item_size_12"
                                 android:fontFamily="@font/coolvetica_rg"
+                                android:overScrollMode="never"
                                 tools:ignore="RtlCompat" />
                         </LinearLayout>
                     </LinearLayout>

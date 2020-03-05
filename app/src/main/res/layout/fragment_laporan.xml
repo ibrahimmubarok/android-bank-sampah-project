@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
     tools:context=".ui.LaporanFragment">
 
     <include
@@ -19,7 +19,8 @@
         android:background="@drawable/background"
         style="?android:attr/progressBarStyleLarge"
         android:indeterminateTint="@color/colorPrimaryDark"
-        android:visibility="visible">
+        android:visibility="visible"
+        tools:ignore="UnusedAttribute">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -54,8 +55,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_marginBottom="@dimen/item_margin_8"
-                android:src="@drawable/ic_ilus_laporan_tabungan"
-                android:contentDescription="TODO" />
+                android:src="@drawable/ic_ilus_laporan_tabungan" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,7 +66,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:listitem="@layout/item_laporan_tabungan"
-                    android:overScrollMode="never"/>
+                    android:overScrollMode="never"
+                    tools:itemCount="5"/>
             </LinearLayout>
         </LinearLayout>
 

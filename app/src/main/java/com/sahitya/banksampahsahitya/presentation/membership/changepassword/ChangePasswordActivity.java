@@ -3,6 +3,7 @@ package com.sahitya.banksampahsahitya.presentation.membership.changepassword;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentManager;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -18,8 +19,9 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.sahitya.banksampahsahitya.R;
-import com.sahitya.banksampahsahitya.RegisterActivity;
-import com.sahitya.banksampahsahitya.presentation.membership.editprofile.EditProfileActivity;
+import com.sahitya.banksampahsahitya.presentation.membership.SettingsActivity;
+import com.sahitya.banksampahsahitya.ui.customdialog.CustomDialogOne;
+import com.sahitya.banksampahsahitya.ui.customdialog.CustomDialogTwo;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,37 +73,12 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
 
             if (!TextUtils.isEmpty(password) && !TextUtils.isEmpty(confirmPassword)){
                 if (password.equals(confirmPassword)){
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    builder.setMessage("Apakah anda yakin data yang dimasukkan benar?");
-                    builder.setTitle("Validasi Password");
-                    builder.setCancelable(true);
-
-                    builder.setPositiveButton(
-                            "Iya", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    loading = ProgressDialog.show(ChangePasswordActivity.this, null, "Harap Tunggu...", true, false);
-
-                                }
-                            }
-                    );
-
-                    builder.setNegativeButton(
-                            "Tidak", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    dialogInterface.cancel();
-                                }
-                            }
-                    );
-
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                    showAlert("Apakah kamu yakin ingin mengganti password?", SettingsActivity.class);
                 }else{
-                    showDialog("Password tidak sama", "Password error");
+                    showAlertDataInvalid("Password error", "Konfirmasi password harus sama dengan password baru");
                 }
             }else{
-                showDialog("Harap masukkan password baru dan konfirmasi password", "Field Kosong");
+                showAlertDataInvalid("Field kosong", "Harap masukkan password baru dan konfirmasi password");
             }
         }
     }
@@ -114,22 +91,24 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         return super.onOptionsItemSelected(item);
     }
 
-    private void showDialog(String message, String title){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(message);
-        builder.setTitle(title);
-        builder.setCancelable(true);
+    private void showAlert(String head, Class<?> cls){
+        CustomDialogTwo mCustomDialogTwo = new CustomDialogTwo(ChangePasswordActivity.this, head, cls);
 
-        builder.setPositiveButton(
-                "Iya", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                }
-        );
+        FragmentManager mFragmentManager = getSupportFragmentManager();
+        mCustomDialogTwo.show(mFragmentManager, cls.getSimpleName());
+    }
 
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+    private void showAlertDataInvalid(String head, String body){
+        CustomDialogOne mCustomDialogOne = new CustomDialogOne(head, body);
+
+        FragmentManager mFragmentManager = getSupportFragmentManager();
+        mCustomDialogOne.show(mFragmentManager, ChangePasswordActivity.class.getSimpleName());
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(ChangePasswordActivity.this, SettingsActivity.class));
+        finish();
     }
 }

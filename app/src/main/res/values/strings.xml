@@ -8,7 +8,7 @@
     <string name="label_garbage_info">Info Sampah</string>
     <string name="label_ranking">Peringkat</string>
     <string name="label_report">Laporan</string>
-    <string name="label_profile">Profil</string>
+    <string name="label_setting">Pengaturan</string>
     <string name="label_greeting">Halo,</string>
     <string name="value_name">Nasabah!</string>
     <string name="label_savings_greeting">Ayo kumpulkan sampahmu dan tukar dengan sejumlah uang hanya di Bank Sampah Sahitya!</string>
@@ -33,6 +33,7 @@
     <string name="label_submenu_profile">Pencairan</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
+    <string name="sukses_password">Password berhasil diubah</string>
     <string name="masuk">Masuk</string>
     <string name="belum_memiliki_akun">Belum Memiliki Akun?</string>
     <string name="sign_up"><u>Daftar</u></string>
@@ -56,7 +57,7 @@
     <string name="nama_random_winner">Nama</string>
     <string name="null_value">0</string>
     <string name="regist">Daftar</string>
-    <string name="regist_success">Akun Telah Berhasil Terdaftar</string>
+    <string name="regist_success">Akun telah berhasil terdaftar</string>
     <string name="kode_verifikasi">Kode Verifikasi</string>
     <string name="label_kode_verifikasi">Masukkan kode verifikasi yang sudah dikirim ke email anda</string>
     <string name="kirim">Kirim</string>
@@ -76,7 +77,7 @@
     <string name="pendapatan_saat_ini">Pendapatan Saat Ini</string>
     <string name="rp_0">Rp. 0</string>
     <string name="riwayat_pencairan">Riwayat Pencairan</string>
-    <string name="_00_00_01_jan_2020">00:00 - 01 Jan 2020</string>
+    <string name="_00_00_01_jan_2020">00:00 – 01 Jan 2020</string>
     <string name="pencairan_kosong">Anda belum pernah melakukan pencairan</string>
     <string name="app_info">App Info</string>
     <string name="f_a_q">F.A.Q</string>
@@ -105,6 +106,7 @@
     <string name="info">Info</string>
     <string name="cari_nama_barang">Cari nama barang</string>
     <string name="kategori">Kategori</string>
+    <string name="pengaturan">Pengaturan</string>
 
     <string-array name="fakultas">
         <item>Ilmu Tarbiyah dan Keguruan</item>

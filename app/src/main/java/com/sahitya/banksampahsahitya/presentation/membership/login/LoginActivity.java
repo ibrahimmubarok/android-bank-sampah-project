@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mVerificationService = VerificationUtils.getVerificationService();
 
         textInputEmail.setText("yantootnay@gmail.com");
-        textInputPassword.setText("iniikhsan");
+        textInputPassword.setText("123");
 
         textInputEmail.addTextChangedListener(this);
         textInputPassword.addTextChangedListener(this);
@@ -230,6 +230,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         CustomDialogOne mCustomDialogOne = new CustomDialogOne(head, body);
 
         FragmentManager mFragmentManager = getSupportFragmentManager();
-        mCustomDialogOne.show(mFragmentManager, CustomDialogOne.class.getSimpleName());
+        mCustomDialogOne.show(mFragmentManager, LoginActivity.class.getSimpleName());
     }
 }
